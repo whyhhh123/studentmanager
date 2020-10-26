@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Home</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" th:href="@{index/img/icon.ico}" type="image/x-icon"/>
+
+	<!-- Fonts and icons -->
+	<script th:src="@{index/js/plugin/webfont/webfont.min.js}"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['/index/css/fonts.min.css']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" th:href="@{index/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{index/css/atlantis.min.css}">
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link rel="stylesheet" th:href="@{index/css/demo.css}">
+</head>
+<body>
+	<div class="wrapper" >
+		<div class="main-header" th:fragment="logoheader">
+			<!-- Logo Header -->
+			<div class="logo-header" data-background-color="blue" >
+				
+				<a  class="logo">
+					<p  alt="navbar brand" class="navbar-brand">学生管理系统</p>
+
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+
+			</div>
+			<!-- End Logo Header -->
+
+			<!-- Navbar Header -->
+			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2" >
+			</nav>
+			<!-- End Navbar -->
+		</div>
+
+		<!-- Sidebar -->
+		<div class="sidebar sidebar-style-2" th:fragment="sidebar">
+			<div class="sidebar-wrapper scrollbar scrollbar-inner">
+				<div class="sidebar-content">
+					<div class="user">
+						<div class="avatar-sm float-left mr-2">
+						</div>
+						<div class="info">
+							<a data-toggle="collapse" th:href="@{#collapseExample}" aria-expanded="true">
+								<span>
+									Username
+									<span class="user-level">Type</span>
+									<span class="caret"></span>
+								</span>
+							</a>
+							<div class="clearfix"></div>
+
+							<div class="collapse in" id="collapseExample">
+								<ul class="nav">
+									<li>
+										<a href="#edit">
+											<span class="link-collapse">编辑资料</span>
+										</a>
+									</li>
+									<li>
+										<a href="#settings">
+											<span class="link-collapse">Settings</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<ul class="nav nav-primary">
+
+						<li class="nav-item">
+							<a data-toggle="collapse" th:href="@{#tables}">
+								<i class="fas fa-table"></i>
+								<p>学生信息管理</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables">
+								<ul class="nav nav-collapse">
+
+									<li>
+										<a th:href="@{/index/tables/datatables}" >
+											<span class="sub-item">Datatables</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" th:href="@{#tables1}">
+								<i class="fas fa-table"></i>
+								<p>教师信息管理</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables1">
+								<ul class="nav nav-collapse">
+
+									<li>
+										<a th:href="@{/index/tables/datatables.html}">
+											<span class="sub-item">Datatables</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" th:href="@{#tables2}">
+								<i class="fas fa-table"></i>
+								<p>班级信息管理</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables2">
+								<ul class="nav nav-collapse">
+
+									<li>
+										<a th:href="@{/index/tables/datatables.html}" th:method="post">
+											<span class="sub-item">Datatables</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- End Sidebar -->
+
+		<div class="main-panel">
+			<div class="content">
+				<div title="欢迎使用" style="padding:20px;overflow:hidden; color:red; ">
+					<p style="font-size: 25px; line-height: 30px; height: 30px;">欢迎使用学生成绩管理系统</p>
+					<p>开发人员：王贺阳、张莉渝、刘志洋</p>
+
+					<hr />
+					<h2>系统环境</h2>
+					<p>系统环境：Windows</p>
+					<p>开发工具：IDEA</p>
+					<p>Java版本：JDK 11</p>
+					<p>服务器：tomcat 9.0</p>
+					<p>数据库：MySQL 8.0</p>
+					<p>系统采用技术： springboot + mybatis + maven</p>
+				</div>
+			</div>
+
+		</div>
+		
+		<!-- Custom template | don't include it in your project! -->
+
+		<!-- End Custom template -->
+	</div>
+	<!--   Core JS Files   -->
+	<script th:src="@{/index/js/core/jquery.3.2.1.min.js}"></script>
+	<script th:src="@{/index/js/core/popper.min.js}"></script>
+	<script th:src="@{/index/js/core/bootstrap.min.js}"></script>
+
+	<!-- jQuery UI -->
+	<script th:src="@{/index/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js}"></script>
+	<script th:src="@{/index/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js}"></script>
+
+	<!-- jQuery Scrollbar -->
+	<script th:src="@{/index/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+
+
+	<!-- Chart JS -->
+	<script th:src="@{/index/js/plugin/chart.js/chart.min.js}"></script>
+
+	<!-- jQuery Sparkline -->
+	<script th:src="@{/index/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+
+	<!-- Chart Circle -->
+	<script th:src="@{/index/js/plugin/chart-circle/circles.min.js}"></script>
+
+	<!-- Datatables -->
+	<script th:src="@{/index/js/plugin/datatables/datatables.min.js}"></script>
+
+	<!-- Bootstrap Notify -->
+	<script th:src="@{/index/js/plugin/bootstrap-notify/bootstrap-notify.min.js}"></script>
+
+	<!-- jQuery Vector Maps -->
+	<script th:src="@{index/js/plugin/jqvmap/jquery.vmap.min.js}"></script>
+	<script th:src="@{/index/js/plugin/jqvmap/maps/jquery.vmap.world.js}"></script>
+
+	<!-- Sweet Alert -->
+	<script th:src="@{/index/js/plugin/sweetalert/sweetalert.min.js}"></script>
+
+	<!-- Atlantis JS -->
+	<script th:src="@{/index/js/atlantis.min.js}"></script>
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script th:src="@{/index/js/setting-demo.js}"></script>
+	<script th:src="@{/index/js/demo.js}"></script>
+	<script>
+		Circles.create({
+			id:'circles-1',
+			radius:45,
+			value:60,
+			maxValue:100,
+			width:7,
+			text: 5,
+			colors:['#f1f1f1', '#FF9E27'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+
+		Circles.create({
+			id:'circles-2',
+			radius:45,
+			value:70,
+			maxValue:100,
+			width:7,
+			text: 36,
+			colors:['#f1f1f1', '#2BB930'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+
+		Circles.create({
+			id:'circles-3',
+			radius:45,
+			value:40,
+			maxValue:100,
+			width:7,
+			text: 12,
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+
+		var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
+
+		var mytotalIncomeChart = new Chart(totalIncomeChart, {
+			type: 'bar',
+			data: {
+				labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
+				datasets : [{
+					label: "Total Income",
+					backgroundColor: '#ff9e27',
+					borderColor: 'rgb(23, 125, 255)',
+					data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
+				}],
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					display: false,
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							display: false //this will remove only the label
+						},
+						gridLines : {
+							drawBorder: false,
+							display : false
+						}
+					}],
+					xAxes : [ {
+						gridLines : {
+							drawBorder: false,
+							display : false
+						}
+					}]
+				},
+			}
+		});
+
+		$('#lineChart').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#ffa534',
+			fillColor: 'rgba(255, 165, 52, .14)'
+		});
+	</script>
+</body>
+</html>
