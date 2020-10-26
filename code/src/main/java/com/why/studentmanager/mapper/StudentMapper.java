@@ -8,10 +8,13 @@ public interface StudentMapper {
     List<Student> findAllStudent();
 
     Student findByStudent(Student student);
+    Student findById(Integer id);
 
     int addStudent(Student student);
 
     int updateStudent(Student student);
+
+    int deleteStudent(Integer id);
 
 
 }

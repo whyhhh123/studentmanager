@@ -46,6 +46,10 @@
 								</div>
 								<div class="card-body">
 									<a class="btn btn-primary btn-xs" th:href="@{/addstudent}">添加学生
+
+									</a>
+
+
 									</a>
 
 									<div class="table-responsive">
@@ -71,8 +75,8 @@
 													<td th:text="${student.getMobile()}"></td>
 
 													<td>
-														<a class="btn btn-sm btn-primary" th:href="@{/updatestudent}">编辑</a>
-														<a class="btn btn-sm btn-danger" >删除</a>
+														<a class="btn btn-sm btn-primary" th:href="@{/updatestudent/}+${student.getId()}">编辑</a>
+														<a class="btn btn-sm btn-danger" th:href="@{/deletestudent/}+${student.getId()}">删除</a>
 													</td>
 												</tr>
 											</tbody>

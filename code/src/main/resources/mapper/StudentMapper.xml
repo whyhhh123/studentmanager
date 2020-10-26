@@ -11,6 +11,18 @@
 
     <insert id="addStudent" parameterType="Student" >
         insert into s_student(sid,username,password,class_id,sex,mobile) values(#{sid},#{username},#{password},#{class_id},#{sex},#{mobile})
+
     </insert>
+
+    <update id="updateStudent" parameterType="Student">
+        update s_student set sid = #{sid},username = #{username},password = #{password},class_id = #{class_id},sex = #{sex},mobile = #{mobile} where id = #{id}
+    </update>
+
+    <select id="findById" parameterType="int" resultType="Student">
+        select * from s_student where id = #{id}
+    </select>
+    <delete id="deleteStudent" parameterType="int" >
+        delete from s_student where id=#{id}
+    </delete>
 
 </mapper>

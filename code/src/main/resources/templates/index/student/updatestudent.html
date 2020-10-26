@@ -53,26 +53,27 @@
                                 <h4 class="card-title">添加学生</h4>
                             </div>
                             <div class="card-body">
-                                <form th:method="post" th:action="@{/add_student}">
+                                <form th:method="post" th:action="@{/update_student/}+${student.getId()}">
 
                                     <div class="form-group form-floating-label">
-                                        <input id="sid" type="text" class="form-control input-border-bottom" name="sid" required>
-                                        <label for="sid" class="placeholder">学号</label>
+                                        <input id="sid" type="text" class="form-control input-border-bottom" th:value="${student.getSid()}" name="sid" required>
+                                        <label for="sid" class="placeholder" >学号</label>
+
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <input id="username" type="text" class="form-control input-border-bottom" name="username" required>
+                                        <input id="username" type="text" class="form-control input-border-bottom" th:value="${student.getUsername()}" name="username" required>
                                         <label for="username" class="placeholder">用户名</label>
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <input id="password" type="text" class="form-control input-border-bottom" name="password" required>
+                                        <input id="password" type="text" class="form-control input-border-bottom" th:value="${student.getPassword()}" name="password" required>
                                         <label for="password" class="placeholder">密码</label>
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <input id="mobile" type="text" class="form-control input-border-bottom" name="mobile" required>
+                                        <input id="mobile" type="text" class="form-control input-border-bottom" th:value="${student.getMobile()}" name="mobile" required>
                                         <label for="mobile" class="placeholder">电话</label>
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <select class="form-control input-border-bottom" id="sex" name="sex" required>
+                                        <select class="form-control input-border-bottom" id="sex" th:value="${student.getSex()}" name="sex" required>
                                             <option value="">&nbsp;</option>
                                             <option>男</option>
                                             <option>女</option>
@@ -80,7 +81,7 @@
                                         <label for="sex" class="placeholder">性别</label>
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <select class="form-control input-border-bottom" id="class_id" name="class_id" required>
+                                        <select class="form-control input-border-bottom" id="class_id" th:value="${student.getClass_id()}" name="class_id" required>
                                             <option value="">&nbsp;</option>
                                             <option>1</option>
                                             <option>2</option>

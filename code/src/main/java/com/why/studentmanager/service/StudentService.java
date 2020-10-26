@@ -8,4 +8,7 @@ public interface StudentService {
     List<Student> findAllStudent();
     Student findByStudent(Student student);
     int addStudent(Student student);
+    Student findById(Integer id);
+    int updateStudent(Student student);
+    int deleteStudent(Integer id);
 }

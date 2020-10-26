@@ -5,4 +5,5 @@ import com.why.studentmanager.domain.Admin;
 public interface AdminMapper {
     Admin findByAdmin(Admin admin);
     int updatePwdByAdmin(Admin admin);
+
 }
