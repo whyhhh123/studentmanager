@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ClassMapper {
     List<Clazz> findAllClass();
-    Clazz findByClass(Integer id);
+    Clazz findById(Integer id);
 }

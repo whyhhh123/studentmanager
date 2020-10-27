@@ -4,7 +4,6 @@ import com.why.studentmanager.domain.Clazz;
 import com.why.studentmanager.domain.Student;
 import com.why.studentmanager.service.ClassService;
 import com.why.studentmanager.service.StudentService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,12 +22,13 @@ public class StudentController {
     public ClassService classService;
 
 
-    @GetMapping("/index/tables/datatables")
+    @GetMapping("/index/tables/studentlist")
     public String studentList(Model model){
         List<Student> students = studentService.findAllStudent();
         model.addAttribute("sts",students);
 
-        return "index/tables/datatables";
+        System.out.println("student = " + students);
+        return "index/tables/studentlist";
     }
 
     @GetMapping("/addstudent")
@@ -36,6 +36,7 @@ public class StudentController {
         List<Clazz> clazzes = classService.findAllClass();
         System.out.println("班级 = " + clazzes);
         model.addAttribute("clazzes",clazzes);
+
         return "/index/student/addstudent";
     }
 
@@ -46,8 +47,8 @@ public class StudentController {
         if(result>0){
             List<Student> students = studentService.findAllStudent();
             model.addAttribute("sts",students);
-
-            return "index/tables/datatables";
+            //System.out.println("student = " + student.getClazz().getName());
+            return "index/tables/studentlist";
         }
         else{
             return "index/student/addstudent";
@@ -68,13 +69,15 @@ public class StudentController {
     @PostMapping("/update_student/{id}")
     public String postUpdate(@PathVariable("id")Integer id, Student student,Model model){
         student.setId(id);
-        System.out.println("id = " + id + ", student = " + student + ", model = " + model);
+        Student st_init = studentService.findById(id);
+
+        //System.out.println("id = " + id + ", student = " + student );
         int result = studentService.updateStudent(student);
         System.out.println(result);
-        if(result>0){
+        if(result>0||st_init.equals(student)){
             List<Student> students = studentService.findAllStudent();
             model.addAttribute("sts",students);
-            return "index/tables/datatables";
+            return "index/tables/studentlist";
         }
         else{
             return "index/student/updatestudent";
@@ -93,6 +96,6 @@ public class StudentController {
         else{
 
         }
-        return "index/tables/datatables";
+        return "index/tables/studentlist";
     }
 }

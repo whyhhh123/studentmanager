@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.why.studentmanager.mapper.ClassMapper">
-    <select id="findByClass" parameterType="int" resultType="Clazz">
+    <select id="findById" parameterType="int" resultType="Clazz">
         select * from s_class where id = #{id}
     </select>
     <select id="findAllClass" parameterType="int" resultType="Clazz">
-        select * from s_class
+        select s_class.class_name,info,s_teacher.username as teacher_name from s_class,s_teacher where s_teacher.class_id = s_class.class_id
     </select>
 
 </mapper>

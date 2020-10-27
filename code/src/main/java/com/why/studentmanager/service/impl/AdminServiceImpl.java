@@ -15,6 +15,7 @@ public class AdminServiceImpl implements AdminService {
     public Admin findByAdmin(Admin admin) {
 
         Admin admin1 = adminMapper.findByAdmin(admin);
+        System.out.println("admin = " + admin);
         return admin1;
     }
 

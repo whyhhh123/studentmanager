@@ -42,7 +42,6 @@ public class LoginController {
             Admin admin = new Admin();
             admin.setUsername(username);
             admin.setPassword(password);
-
             Admin ad = adminService.findByAdmin(admin);
             if(org.springframework.util.StringUtils.isEmpty(ad)){
                 model.addAttribute("system","用户密码错误");
@@ -56,10 +55,7 @@ public class LoginController {
         return "/index/index";
     }
 
-    /*@GetMapping("/index/tables/datatables.html")
-    public String ii(){
-        return "index/tables/datatables";
-    }*/
+
 
 
 }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ClassService {
     List<Clazz> findAllClass();
-    Clazz findByClass(Integer id);
+    Clazz findById(Integer id);
 }

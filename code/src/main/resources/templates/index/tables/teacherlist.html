@@ -42,10 +42,10 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">学生表</h4>
+									<h4 class="card-title">班级表</h4>
 								</div>
 								<div class="card-body">
-									<a class="btn btn-primary btn-xs" th:href="@{/addstudent}">添加学生
+									<a class="btn btn-primary btn-xs" th:href="@{/addclass}">添加班级
 
 									</a>
 
@@ -56,13 +56,9 @@
 										<table id="multi-filter-select" class="display table table-striped table-hover" >
 											<thead>
 												<tr>
-													<th>学号</th>
-													<th>用户名</th>
-													<th>密码</th>
-													<th>班级</th>
-													<th>性别</th>
-													<th>电话</th>
-													<th>操作</th>
+													<th>班级名</th>
+													<th>班级介绍</th>
+													<th>班主任</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -70,10 +66,9 @@
 													<td th:text="${student.getSid()}"></td>
 													<td th:text="${student.getUsername()}"></td>
 													<td th:text="${student.getPassword()}"></td>
-													<td th:text="${student.getClass_id()}"></td>
+													<td th:text="${student.getClass_name()}"></td>
 													<td th:text="${student.getSex()}"></td>
 													<td th:text="${student.getMobile()}"></td>
-
 													<td>
 														<a class="btn btn-sm btn-primary" th:href="@{/updatestudent/}+${student.getId()}">编辑</a>
 														<a class="btn btn-sm btn-danger" th:href="@{/deletestudent/}+${student.getId()}">删除</a>

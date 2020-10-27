@@ -20,8 +20,8 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
-    public Clazz findByClass(Integer id) {
-        Clazz clazz = classMapper.findByClass(id);
+    public Clazz findById(Integer id) {
+        Clazz clazz = classMapper.findById(id);
         return clazz;
     }
 
