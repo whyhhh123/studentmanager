@@ -53,39 +53,23 @@
                                 <h4 class="card-title">添加学生</h4>
                             </div>
                             <div class="card-body">
-                                <form th:method="post" th:action="@{/update_student/}+${student.getId()}">
+                                <form th:method="post" th:action="@{/update_class/}+${clazz.getClass_id()}">
 
                                     <div class="form-group form-floating-label">
-                                        <input id="sid" type="text" class="form-control input-border-bottom" th:value="${student.getSid()}" name="sid" required>
-                                        <label for="sid" class="placeholder" >学号</label>
-
+                                        <input id="sid" type="text" class="form-control input-border-bottom" th:value="${clazz.getClass_name()}" name="class_name" required>
+                                        <label for="sid" class="placeholder">班级名</label>
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <input id="username" type="text" class="form-control input-border-bottom" th:value="${student.getUsername()}" name="username" required>
-                                        <label for="username" class="placeholder">用户名</label>
+                                        <input id="password" type="text" class="form-control input-border-bottom" th:value="${clazz.getInfo()}" name="info" required>
+                                        <label for="password" class="placeholder">班级简介</label>
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <input id="password" type="text" class="form-control input-border-bottom" th:value="${student.getPassword()}" name="password" required>
-                                        <label for="password" class="placeholder">密码</label>
-                                    </div>
-                                    <div class="form-group form-floating-label">
-                                        <input id="mobile" type="text" class="form-control input-border-bottom" th:value="${student.getMobile()}" name="mobile" required>
-                                        <label for="mobile" class="placeholder">电话</label>
-                                    </div>
-                                    <div class="form-group form-floating-label">
-                                        <select class="form-control input-border-bottom" id="sex" th:value="${student.getSex()}" name="sex" required>
-
-                                            <option>男</option>
-                                            <option>女</option>
+                                        <select class="form-control input-border-bottom" id="class_id" name="tid" required>
+                                            <option th:each="teacher:${teachers}" th:text="${teacher.getUsername()}" th:value="${teacher.getTid()}"></option>
                                         </select>
-                                        <label for="sex" class="placeholder">性别</label>
+                                        <label for="class_id" class="placeholder">班主任</label>
                                     </div>
-                                    <div class="form-group form-floating-label">
-                                        <select class="form-control input-border-bottom" id="class_id" th:value="${student.getClass_id()}" name="class_id" required>
-                                            <option th:each="clazz:${clazzes}" th:text="${clazz.getClass_name() }" th:value="${clazz.getClass_id()}"></option>
-                                        </select>
-                                        <label for="class_id" class="placeholder">班级</label>
-                                    </div>
+
                                     <input type="submit" class="btn btn-primary btn-xs"></input>
 
                                 </form>

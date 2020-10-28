@@ -1,7 +1,11 @@
 package com.why.studentmanager.controller;
 
 import com.why.studentmanager.domain.Admin;
+import com.why.studentmanager.domain.Student;
+import com.why.studentmanager.domain.Teacher;
 import com.why.studentmanager.service.AdminService;
+import com.why.studentmanager.service.StudentService;
+import com.why.studentmanager.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +20,12 @@ public class LoginController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private TeacherService teacherService;
 
     @PostMapping("/index")
     public String login(String username, String password, String type, Model model, HttpSession session){
@@ -33,10 +43,22 @@ public class LoginController {
         }
 
         if(type.equals("1")){
+            Student student = new Student();
+            student.setUsername(username);
+            student.setPassword(password);
+            Student st =studentService.findByStudent(student);
+            if(org.springframework.util.StringUtils.isEmpty(st)){
+                model.addAttribute("system","用户密码错误");
 
+                return "/login";
+            }
+            session.setAttribute("student",st);
+            return "/index/index";
         }
         else if(type.equals("2")){
-
+            Teacher teacher = new Teacher();
+            teacher.setUsername(username);
+            teacher.setPassword(password);
         }
         else if(type.equals("3")){
             Admin admin = new Admin();
@@ -52,7 +74,7 @@ public class LoginController {
             return"/index/index";
 
         }
-        return "/index/index";
+        return "/login";
     }
 
 

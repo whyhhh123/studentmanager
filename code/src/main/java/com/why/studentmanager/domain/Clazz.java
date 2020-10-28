@@ -6,6 +6,16 @@ public class Clazz {
     private int class_id;
     private String class_name;
     private String info;
+    private int tid;
+
+    public int getTid() {
+        return tid;
+    }
+
+    public void setTid(int tid) {
+        this.tid = tid;
+    }
+
     private String teacher_name;
 
     public String getTeacher_name() {
@@ -48,6 +58,7 @@ public class Clazz {
         if (o == null || getClass() != o.getClass()) return false;
         Clazz clazz = (Clazz) o;
         return class_id == clazz.class_id &&
+                tid == clazz.tid &&
                 Objects.equals(class_name, clazz.class_name) &&
                 Objects.equals(info, clazz.info) &&
                 Objects.equals(teacher_name, clazz.teacher_name);
@@ -55,7 +66,7 @@ public class Clazz {
 
     @Override
     public int hashCode() {
-        return Objects.hash(class_id, class_name, info, teacher_name);
+        return Objects.hash(class_id, class_name, info, tid, teacher_name);
     }
 
     @Override
@@ -64,6 +75,7 @@ public class Clazz {
                 "class_id=" + class_id +
                 ", class_name='" + class_name + '\'' +
                 ", info='" + info + '\'' +
+                ", tid=" + tid +
                 ", teacher_name='" + teacher_name + '\'' +
                 '}';
     }

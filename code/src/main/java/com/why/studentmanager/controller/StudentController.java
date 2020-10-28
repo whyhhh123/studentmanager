@@ -27,7 +27,6 @@ public class StudentController {
         List<Student> students = studentService.findAllStudent();
         model.addAttribute("sts",students);
 
-        System.out.println("student = " + students);
         return "index/tables/studentlist";
     }
 
@@ -56,7 +55,7 @@ public class StudentController {
     }
 
     @GetMapping("/updatestudent/{id}")
-    public String updatestudent(@PathVariable("id") Integer id, Model model){
+    public String updateStudent(@PathVariable("id") Integer id, Model model){
         System.out.println("id = " + id);
         List<Clazz> clazzes = classService.findAllClass();
 

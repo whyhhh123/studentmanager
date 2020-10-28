@@ -25,4 +25,16 @@ public class ClassServiceImpl implements ClassService {
         return clazz;
     }
 
+    @Override
+    public int addClass(Clazz clazz) {
+        int result =classMapper.addClass(clazz);
+        return result;
+    }
+
+    @Override
+    public int updateClass(Clazz clazz) {
+        int result = classMapper.updateClass(clazz);
+        return result;
+    }
+
 }

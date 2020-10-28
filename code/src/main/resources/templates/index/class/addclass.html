@@ -50,42 +50,25 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">添加学生</h4>
+                                <h4 class="card-title">添加班级</h4>
                             </div>
                             <div class="card-body">
-                                <form th:method="post" th:action="@{/add_student}">
+                                <form th:method="post" th:action="@{/add_class}">
 
                                     <div class="form-group form-floating-label">
-                                        <input id="sid" type="text" class="form-control input-border-bottom" name="sid" required>
-                                        <label for="sid" class="placeholder">学号</label>
+                                        <input id="sid" type="text" class="form-control input-border-bottom" name="class_name" required>
+                                        <label for="sid" class="placeholder">班级名</label>
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <input id="username" type="text" class="form-control input-border-bottom" name="username" required>
-                                        <label for="username" class="placeholder">用户名</label>
+                                        <input id="password" type="text" class="form-control input-border-bottom" name="class_info" required>
+                                        <label for="password" class="placeholder">班级简介</label>
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <input id="password" type="text" class="form-control input-border-bottom" name="password" required>
-                                        <label for="password" class="placeholder">密码</label>
-                                    </div>
-                                    <div class="form-group form-floating-label">
-                                        <input id="mobile" type="text" class="form-control input-border-bottom" name="mobile" required>
-                                        <label for="mobile" class="placeholder">电话</label>
-                                    </div>
-                                    <div class="form-group form-floating-label">
-                                        <select class="form-control input-border-bottom" id="sex" name="sex" required>
-                                            <option value="">&nbsp;</option>
-                                            <option>男</option>
-                                            <option>女</option>
+                                        <select class="form-control input-border-bottom" id="class_id" name="tid" required>
+                                            <option th:value="0"> </option>
+                                            <option th:each="teacher:${teachers}" th:text="${teacher.getUsername()}" th:value="${teacher.getTid()}"></option>
                                         </select>
-                                        <label for="sex" class="placeholder">性别</label>
-                                    </div>
-                                    <div class="form-group form-floating-label">
-                                        <select class="form-control input-border-bottom" id="class_id" name="class_id" required>
-                                            <option > </option>
-                                            <option th:each="clazz:${clazzes}" th:text="${clazz.getClass_name()}" th:value="${clazz.getClass_id()}"></option>
-
-                                        </select>
-                                        <label for="class_id" class="placeholder">班级</label>
+                                        <label for="class_id" class="placeholder">班主任</label>
                                     </div>
                                     <input type="submit" class="btn btn-primary btn-xs"></input>
 

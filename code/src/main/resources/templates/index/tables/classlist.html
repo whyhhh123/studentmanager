@@ -56,6 +56,7 @@
 													<th>班级名</th>
 													<th>班级介绍</th>
 													<th>班主任</th>
+
 													<th>操作</th>
 												</tr>
 											</thead>
@@ -63,6 +64,7 @@
 												<tr th:each="clazz:${clazzes}">
 													<td th:text="${clazz.getClass_name()}"></td>
 													<td th:text="${clazz.getInfo()}"></td>
+
 													<td th:text="${clazz.getTeacher_name()}"></td>
 													<td>
 														<a class="btn btn-sm btn-primary" th:href="@{/updateclass/}+${clazz.getClass_id()}">编辑</a>
