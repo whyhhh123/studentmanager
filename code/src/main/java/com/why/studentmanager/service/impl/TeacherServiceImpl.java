@@ -27,9 +27,21 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public Teacher findByClassid(int class_id) {
+        Teacher teacher = teacherMapper.findByClassid(class_id);
+        return teacher;
+    }
+
+    @Override
     public int setClass_id(int id) {
         int result = teacherMapper.setClass_id(id);
         return result;
 
+    }
+
+    @Override
+    public int resetClass_id(int tid) {
+        int result = teacherMapper.resetClass_id(tid);
+        return result;
     }
 }

@@ -14,5 +14,8 @@
     <update id="updateClass" parameterType="Clazz">
         update s_class set class_name = #{class_name},info = #{info},tid = #{tid} where class_id = #{class_id}
     </update>
+    <delete id="deleteClass" parameterType="int">
+        delete from s_class where class_id = #{class_id}
+    </delete>
 
 </mapper>

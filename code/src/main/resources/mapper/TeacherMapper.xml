@@ -10,8 +10,16 @@
         select * from s_teacher where class_id = 0
     </select>
 
+    <select id="findByClassid" parameterType="int" resultType="Teacher">
+        select * from s_teacher where class_id = #{class_id}
+    </select>
+
     <update id="setClass_id" parameterType="int">
         update s_teacher set class_id = (select class_id from s_class where tid=#{tid}) where tid= #{tid}
+    </update>
+
+    <update id="resetClass_id" parameterType="int">
+        update s_teacher set class_id = 0 where tid = #{tid}
     </update>
 
 </mapper>

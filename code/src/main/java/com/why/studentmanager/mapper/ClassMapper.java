@@ -9,4 +9,6 @@ public interface ClassMapper {
     Clazz findById(Integer id);
     int addClass(Clazz clazz);
     int updateClass(Clazz clazz);
+    int deleteClass(Integer id);
+
 }

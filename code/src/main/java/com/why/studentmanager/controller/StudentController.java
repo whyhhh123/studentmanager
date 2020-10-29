@@ -84,9 +84,10 @@ public class StudentController {
 
     }
 
-    @GetMapping("/deletestudent/{id}")
-    public String getDelete(@PathVariable("id")Integer id,Model model){
-        int result = studentService.deleteStudent(id);
+    @GetMapping("/deletestudent/{class_id}")
+    public String getDelete(@PathVariable("class_id")Integer class_id,Model model){
+        int result = studentService.deleteStudent(class_id);
+
         if(result>0){
             List<Student> students = studentService.findAllStudent();
             model.addAttribute("sts",students);

@@ -37,6 +37,8 @@ public class ClassController {
         model.addAttribute("teachers",teachers);
         return "/index/class/addclass";
     }
+
+
     @PostMapping("/add_class")
     @Transactional(rollbackFor = {Exception.class})
     public String add_class(Clazz clazz,Model model){
@@ -53,6 +55,7 @@ public class ClassController {
         }
     }
 
+
     @GetMapping("/updateclass/{class_id}")
     public String updateClass(@PathVariable("class_id") Integer class_id, Model model){
         Clazz clazz =classService.findById(class_id);
@@ -66,12 +69,18 @@ public class ClassController {
     }
 
     @PostMapping("/update_class/{class_id}")
+    @Transactional(rollbackFor = {Exception.class})
     public String updateClass(@PathVariable("class_id")Integer class_id,Clazz clazz,Model model){
         clazz.setClass_id(class_id);
         System.out.println( "clazz = " + clazz  );
         int result = classService.updateClass(clazz);
+        int resultResetTeacher = teacherService.resetClass_id(teacherService.findByClassid(class_id).getTid());
+        int resultSetTeacher = teacherService.setClass_id(clazz.getTid());
+
+
         System.out.println(result);
-        if(result>0){
+        if(result>0&&resultSetTeacher>0&&resultResetTeacher>0){
+
             List<Clazz> clazzes = classService.findAllClass();
 
             model.addAttribute("clazzes",clazzes);
@@ -82,9 +91,19 @@ public class ClassController {
         }
     }
     @GetMapping("/deleteclass/{class_id}")
-    public String deleteClass(@PathVariable("class_id")Integer class_id){
+    public String deleteClass(@PathVariable("class_id")Integer class_id,Model model){
+        int resetResult = teacherService.resetClass_id(teacherService.findByClassid(class_id).getTid());
+        int deleteResult = classService.deleteClass(class_id);
+        if(resetResult>0&&deleteResult>0){
+            List<Clazz> clazzes = classService.findAllClass();
 
-        return null;
+            model.addAttribute("clazzes",clazzes);
+
+        }
+        else{
+
+        }
+        return "/index/tables/classlist";
     }
 
 }

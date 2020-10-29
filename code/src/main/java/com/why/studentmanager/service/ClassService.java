@@ -9,4 +9,5 @@ public interface ClassService {
     Clazz findById(Integer id);
     int addClass(Clazz clazz);
     int updateClass(Clazz clazz);
+    int deleteClass(Integer class_id);
 }

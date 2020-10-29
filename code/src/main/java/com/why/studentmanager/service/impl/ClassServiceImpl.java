@@ -37,4 +37,10 @@ public class ClassServiceImpl implements ClassService {
         return result;
     }
 
+    @Override
+    public int deleteClass(Integer class_id) {
+        int result = classMapper.deleteClass(class_id);
+        return result;
+    }
+
 }
