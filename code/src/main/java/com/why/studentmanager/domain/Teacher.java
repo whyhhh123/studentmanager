@@ -10,6 +10,7 @@ public class Teacher {
     private int class_id;
     private String sex;
     private String mobile;
+    private String class_name;
 
 
     @Override
@@ -22,6 +23,7 @@ public class Teacher {
                 ", class_id=" + class_id +
                 ", sex='" + sex + '\'' +
                 ", mobile='" + mobile + '\'' +
+                ", class_name='" + class_name + '\'' +
                 '}';
     }
 
@@ -36,12 +38,21 @@ public class Teacher {
                 Objects.equals(username, teacher.username) &&
                 Objects.equals(password, teacher.password) &&
                 Objects.equals(sex, teacher.sex) &&
-                Objects.equals(mobile, teacher.mobile);
+                Objects.equals(mobile, teacher.mobile) &&
+                Objects.equals(class_name, teacher.class_name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tid, username, password, class_id, sex, mobile);
+        return Objects.hash(id, tid, username, password, class_id, sex, mobile, class_name);
+    }
+
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
     }
 
     public int getClass_id() {

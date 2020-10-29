@@ -8,9 +8,13 @@ public interface TeacherMapper {
     List<Teacher> findAllTeacher();
     List<Teacher> addTeacherClassid();
     Teacher findByClassid(int class_id);
+    Teacher findById(int id);
+    int addTeacher(Teacher teacher);
 
     int setClass_id(int tid);//添加任课班级
 
     int resetClass_id(int tid);
+    int updateTeacher(Teacher teacher);
+    int deleteTeacher(int id);
 
 }

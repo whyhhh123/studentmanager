@@ -3,16 +3,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.why.studentmanager.mapper.TeacherMapper">
     <select id="findAllTeacher" resultType="Teacher">
-        select * from s_teacher
+        select id,t.tid,username,password,t.class_id,sex,mobile from s_teacher t
     </select>
+
 
     <select id="addTeacherClassid" resultType="Teacher">
         select * from s_teacher where class_id = 0
     </select>
 
+
     <select id="findByClassid" parameterType="int" resultType="Teacher">
         select * from s_teacher where class_id = #{class_id}
     </select>
+
+    <select id="findById" parameterType="int" resultType="Teacher">
+        select * from s_teacher where id = #{id}
+    </select>
+
+    <insert id="addTeacher" parameterType="Teacher">
+        insert into s_teacher(tid,username,password,sex,mobile) values (#{tid},#{username},#{password},#{sex},#{mobile})
+    </insert>
 
     <update id="setClass_id" parameterType="int">
         update s_teacher set class_id = (select class_id from s_class where tid=#{tid}) where tid= #{tid}
@@ -22,4 +32,11 @@
         update s_teacher set class_id = 0 where tid = #{tid}
     </update>
 
+    <update id="updateTeacher" parameterType="Teacher">
+        update S_teacher set tid = #{tid},username = #{username},password = #{password},sex = #{sex},mobile = #{mobile} where id = #{id}
+    </update>
+
+    <delete id="deleteTeacher" parameterType="int">
+        delete from s_teacher where id = #{id}
+    </delete>
 </mapper>

@@ -11,4 +11,9 @@ public interface TeacherService {
     Teacher findByClassid(int class_id);
     int setClass_id(int tid);
     int resetClass_id(int tid);
+    int addTeacher(Teacher teacher);
+    Teacher findById(int id);
+    int updateTeacher(Teacher teacher);
+    int deleteTeacher(int id);
+
 }

@@ -5,6 +5,11 @@
     <select id="findById" parameterType="int" resultType="Clazz">
         select s_class.class_id,class_name,info,s_class.tid,s_teacher.username as teacher_name from s_class,s_teacher where s_class.class_id = #{class_id} and s_teacher.class_id = #{class_id}
     </select>
+
+    <select id="setTid" resultType="Clazz">
+        select  class_id,class_name from s_class where tid = 0
+    </select>
+
     <select id="findAllClass" parameterType="int" resultType="Clazz">
         select s_class.class_id, s_class.class_name,info,s_teacher.username as teacher_name from s_class,s_teacher where s_teacher.class_id = s_class.class_id
     </select>

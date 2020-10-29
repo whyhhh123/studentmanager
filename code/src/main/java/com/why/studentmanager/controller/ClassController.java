@@ -43,7 +43,6 @@ public class ClassController {
     @Transactional(rollbackFor = {Exception.class})
     public String add_class(Clazz clazz,Model model){
         int result_class = classService.addClass(clazz);
-
         int result_teacher = teacherService.setClass_id(clazz.getTid());
         if(result_class>0&&result_teacher>0){
             List<Clazz> clazzes = classService.findAllClass();
@@ -72,13 +71,13 @@ public class ClassController {
     @Transactional(rollbackFor = {Exception.class})
     public String updateClass(@PathVariable("class_id")Integer class_id,Clazz clazz,Model model){
         clazz.setClass_id(class_id);
-        System.out.println( "clazz = " + clazz  );
+
         int result = classService.updateClass(clazz);
         int resultResetTeacher = teacherService.resetClass_id(teacherService.findByClassid(class_id).getTid());
         int resultSetTeacher = teacherService.setClass_id(clazz.getTid());
 
 
-        System.out.println(result);
+
         if(result>0&&resultSetTeacher>0&&resultResetTeacher>0){
 
             List<Clazz> clazzes = classService.findAllClass();

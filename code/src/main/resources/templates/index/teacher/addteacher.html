@@ -50,14 +50,14 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">添加学生</h4>
+                                <h4 class="card-title">添加教师</h4>
                             </div>
                             <div class="card-body">
-                                <form th:method="post" th:action="@{/add_student}">
+                                <form th:method="post" th:action="@{/add_teacher/}+${0}">
 
                                     <div class="form-group form-floating-label">
-                                        <input id="sid" type="text" class="form-control input-border-bottom" name="sid" required>
-                                        <label for="sid" class="placeholder">学号</label>
+                                        <input id="sid" type="text" class="form-control input-border-bottom" name="tid" required>
+                                        <label for="sid" class="placeholder">教工号</label>
                                     </div>
                                     <div class="form-group form-floating-label">
                                         <input id="username" type="text" class="form-control input-border-bottom" name="username" required>
@@ -73,21 +73,13 @@
                                     </div>
                                     <div class="form-group form-floating-label">
                                         <select class="form-control input-border-bottom" id="sex" name="sex" required>
-
                                             <option>男</option>
                                             <option>女</option>
                                         </select>
                                         <label for="sex" class="placeholder">性别</label>
                                     </div>
-                                    <div class="form-group form-floating-label">
-                                        <select class="form-control input-border-bottom" id="class_id" name="class_id" required>
 
-                                            <option th:each="clazz:${clazzes}" th:text="${clazz.getClass_name()}" th:value="${clazz.getClass_id()}"></option>
-
-                                        </select>
-                                        <label for="class_id" class="placeholder">班级</label>
-                                    </div>
-                                    <input type="submit" class="btn btn-primary btn-xs"></input>
+                                    <input type="submit" class="btn btn-primary btn-xs">
 
                                 </form>
                             </div>

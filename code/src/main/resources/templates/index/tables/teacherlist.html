@@ -21,8 +21,8 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" th:href="@{/index/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/index/css/atlantis.min.css}">
-	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link rel="stylesheet" th:href="@{/index/css/demo.css}">
+
+
 </head>
 <body>
 
@@ -42,38 +42,37 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">班级表</h4>
+									<h4 class="card-title">教师表</h4>
 								</div>
 								<div class="card-body">
-									<a class="btn btn-primary btn-xs" th:href="@{/addclass}">添加班级
-
+									<a class="btn btn-primary btn-xs" th:href="@{/addteacher}">添加教师
 									</a>
-
-
-									</a>
-
 									<div class="table-responsive">
 										<table id="multi-filter-select" class="display table table-striped table-hover" >
 											<thead>
-												<tr>
-													<th>班级名</th>
-													<th>班级介绍</th>
-													<th>班主任</th>
-												</tr>
+											<tr>
+												<th>教工号</th>
+												<th>用户名</th>
+												<th>密码</th>
+
+												<th>性别</th>
+												<th>电话</th>
+												<th>操作</th>
+											</tr>
 											</thead>
 											<tbody>
-												<tr th:each="student:${sts}">
-													<td th:text="${student.getSid()}"></td>
-													<td th:text="${student.getUsername()}"></td>
-													<td th:text="${student.getPassword()}"></td>
-													<td th:text="${student.getClass_name()}"></td>
-													<td th:text="${student.getSex()}"></td>
-													<td th:text="${student.getMobile()}"></td>
-													<td>
-														<a class="btn btn-sm btn-primary" th:href="@{/updatestudent/}+${student.getId()}">编辑</a>
-														<a class="btn btn-sm btn-danger" th:href="@{/deletestudent/}+${student.getId()}">删除</a>
-													</td>
-												</tr>
+											<tr th:each="teacher:${teachers}">
+												<td th:text="${teacher.getTid()}"></td>
+												<td th:text="${teacher.getUsername()}"></td>
+												<td th:text="${teacher.getPassword()}"></td>
+
+												<td th:text="${teacher.getSex()}"></td>
+												<td th:text="${teacher.getMobile()}"></td>
+												<td>
+													<a class="btn btn-sm btn-primary" th:href="@{/updateteacher/}+${teacher.getId()}">编辑</a>
+													<a class="btn btn-sm btn-danger" th:href="@{/deleteteacher/}+${teacher.getId()}">删除</a>
+												</td>
+											</tr>
 											</tbody>
 										</table>
 									</div>

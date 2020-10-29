@@ -36,7 +36,7 @@ public class StudentController {
         System.out.println("班级 = " + clazzes);
         model.addAttribute("clazzes",clazzes);
 
-        return "/index/student/addstudent";
+        return "index/student/addstudent";
     }
 
     @PostMapping("/add_student")
@@ -56,13 +56,13 @@ public class StudentController {
 
     @GetMapping("/updatestudent/{id}")
     public String updateStudent(@PathVariable("id") Integer id, Model model){
-        System.out.println("id = " + id);
+
         List<Clazz> clazzes = classService.findAllClass();
 
         model.addAttribute("clazzes",clazzes);
         Student student = studentService.findById(id);
         model.addAttribute("student",student);
-        return "/index/student/updatestudent";
+        return "index/student/updatestudent";
 
     }
     @PostMapping("/update_student/{id}")
@@ -72,7 +72,7 @@ public class StudentController {
 
         //System.out.println("id = " + id + ", student = " + student );
         int result = studentService.updateStudent(student);
-        System.out.println(result);
+
         if(result>0||st_init.equals(student)){
             List<Student> students = studentService.findAllStudent();
             model.addAttribute("sts",students);

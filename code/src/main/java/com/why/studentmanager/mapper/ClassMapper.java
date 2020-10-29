@@ -10,5 +10,6 @@ public interface ClassMapper {
     int addClass(Clazz clazz);
     int updateClass(Clazz clazz);
     int deleteClass(Integer id);
+    int setTid();
 
 }
