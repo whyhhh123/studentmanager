@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -37,6 +39,7 @@ public class TeacherController {
 
         int result = teacherService.addTeacher(teacher);
         if(result>0){
+
             List<Teacher> teachers = teacherService.findAllTeacher();
             model.addAttribute("teachers",teachers);
             return "index/tables/teacherlist";

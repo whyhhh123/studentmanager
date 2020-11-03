@@ -1,3 +1,4 @@
+
 package com.why.studentmanager.controller;
 
 import com.why.studentmanager.service.AdminService;
@@ -11,3 +12,4 @@ public class AdminController {
 
 
 }
+

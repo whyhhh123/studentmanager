@@ -76,8 +76,6 @@ public class ClassController {
         int resultResetTeacher = teacherService.resetClass_id(teacherService.findByClassid(class_id).getTid());
         int resultSetTeacher = teacherService.setClass_id(clazz.getTid());
 
-
-
         if(result>0&&resultSetTeacher>0&&resultResetTeacher>0){
 
             List<Clazz> clazzes = classService.findAllClass();

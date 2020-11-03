@@ -10,4 +10,5 @@ public interface ClassService {
     int addClass(Clazz clazz);
     int updateClass(Clazz clazz);
     int deleteClass(Integer class_id);
+
 }

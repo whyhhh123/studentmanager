@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.why.studentmanager.mapper.CourseMapper">
+
+    <update id="updateCourse" parameterType="Course">
+        updata s_course set name = #{name},tid = #{tid},course_date = #{course_date},residue_num = #{residue_num},max_num = #{num} where id = #{id}
+    </update>
+
+    <select id="findAllCourse"  resultType="Course">
+    select name,username as teacherName,course_date as courseDate,residue_num as residueNum,max_num as maxNum from s_course,s_teacher where s_course.tid = s_teacher.tid
+    </select>
+
+    <delete id="deleteCourse" parameterType="int">
+        delete  from s_course where id = #{id}
+    </delete>
+</mapper>
