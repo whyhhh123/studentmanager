@@ -20,6 +20,12 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public int addCourse(Course course) {
+        int result = courseMapper.addCourse(course);
+        return result;
+    }
+
+    @Override
     public int updateCourse(Course course) {
         int result = courseMapper.updateCourse(course);
         return result;
@@ -29,5 +35,12 @@ public class CourseServiceImpl implements CourseService {
     public int deleteCourse(int id) {
         int result = courseMapper.deleteCourse(id);
         return result;
+    }
+
+    @Override
+    public Course findById(int id) {
+
+        Course course = courseMapper.findById(id);
+        return course;
     }
 }

@@ -8,10 +8,18 @@
     </update>
 
     <select id="findAllCourse"  resultType="Course">
-    select name,username as teacherName,course_date as courseDate,residue_num as residueNum,max_num as maxNum from s_course,s_teacher where s_course.tid = s_teacher.tid
+    select s_course.id,name,username as teacherName,course_date as courseDate,residue_num as residueNum,max_num as maxNum from s_course,s_teacher where s_course.tid = s_teacher.tid
+    </select>
+
+    <select id="findById" parameterType="int" resultType="Course">
+        select name,username as teacherName,course_date as courseDate,residue_num as residueNum,max_num as maxNum, info from s_course,s_teacher where s_course.id = #{id} and s_course.tid = s_teacher.tid
     </select>
 
     <delete id="deleteCourse" parameterType="int">
         delete  from s_course where id = #{id}
     </delete>
+
+    <insert id="addCourse" parameterType="Course" >
+        insert into s_course(name,tid,course_date,residue_num,max_num,info) values(#{name},#{tid},#{courseDate},#{maxNum},#{maxNum},#{info})
+    </insert>
 </mapper>

@@ -50,27 +50,38 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">编辑班级</h4>
+                                <h4 class="card-title">编辑课程</h4>
                             </div>
                             <div class="card-body">
-                                <form th:method="post" th:action="@{/update_class/}+${clazz.getClass_id()}">
+                                <form th:method="post" th:action="@{/updatecourse/}+${course.getId()}">
 
                                     <div class="form-group form-floating-label">
-                                        <input id="sid" type="text" class="form-control input-border-bottom" th:value="${clazz.getClass_name()}" name="class_name" required>
-                                        <label for="sid" class="placeholder">班级名</label>
+                                        <input id="course_id" type="text" class="form-control input-border-bottom" th:value="${course.getName()}" name="name" required>
+                                        <label for="course_id" class="placeholder">课程名</label>
                                     </div>
                                     <div class="form-group form-floating-label">
-                                        <input id="password" type="text" class="form-control input-border-bottom" th:value="${clazz.getInfo()}" name="info" required>
-                                        <label for="password" class="placeholder">班级简介</label>
+                                        <input id="info" type="text" class="form-control input-border-bottom" th:value="${course.getInfo()}" name="info" required>
+                                        <label for="info" class="placeholder">课程简介</label>
                                     </div>
+
+                                    <div class="form-group form-floating-label">
+                                        <input id="courseDate" type="text" class="form-control input-border-bottom" th:value="${course.getCourseDate()}"name="courseDate" required>
+                                        <label for="courseDate" class="placeholder">上课时间</label>
+                                    </div>
+
                                     <div class="form-group form-floating-label">
                                         <select class="form-control input-border-bottom" id="class_id" name="tid" required>
                                             <option th:each="teacher:${teachers}" th:text="${teacher.getUsername()}" th:value="${teacher.getTid()}"></option>
                                         </select>
-                                        <label for="class_id" class="placeholder">班主任</label>
+                                        <label for="class_id" class="placeholder">授课教师</label>
                                     </div>
 
-                                    <input type="submit" class="btn btn-primary btn-xs"></input>
+                                    <div class="form-group form-floating-label">
+                                        <input id="maxNum" type="text" class="form-control input-border-bottom" th:value="${course.getMaxNum()}" name="maxNum" required>
+                                        <label for="maxNum" class="placeholder">最大选课人数</label>
+                                    </div>
+
+                                    <input type="submit" class="btn btn-primary btn-xs">
 
                                 </form>
                             </div>

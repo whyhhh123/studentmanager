@@ -4,6 +4,7 @@ import com.why.studentmanager.domain.Clazz;
 import com.why.studentmanager.domain.Student;
 import com.why.studentmanager.service.ClassService;
 import com.why.studentmanager.service.StudentService;
+import com.why.studentmanager.until.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 
@@ -32,8 +35,9 @@ public class StudentController {
 
     @GetMapping("/addstudent")
     public String getAdd(Model model){
+
         List<Clazz> clazzes = classService.findAllClass();
-        System.out.println("班级 = " + clazzes);
+       // System.out.println("班级 = " + clazzes);
         model.addAttribute("clazzes",clazzes);
 
         return "index/student/addstudent";
@@ -41,6 +45,9 @@ public class StudentController {
 
     @PostMapping("/add_student")
     public String postAdd(Student student,Model model){
+       // MessageDigest md = MessageDigest.getInstance("MD5");
+        //System.out.println(Md5Util.stringToMD5(student.getPassword()));
+        student.setPassword(Md5Util.stringToMD5(student.getPassword()));
 
         int result = studentService.addStudent(student);
         if(result>0){
@@ -69,7 +76,7 @@ public class StudentController {
     public String postUpdate(@PathVariable("id")Integer id, Student student,Model model){
         student.setId(id);
         Student st_init = studentService.findById(id);
-
+        student.setPassword(Md5Util.stringToMD5(student.getPassword()));
         //System.out.println("id = " + id + ", student = " + student );
         int result = studentService.updateStudent(student);
 

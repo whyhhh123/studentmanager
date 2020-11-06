@@ -4,6 +4,7 @@ import com.why.studentmanager.domain.Clazz;
 import com.why.studentmanager.domain.Teacher;
 import com.why.studentmanager.service.ClassService;
 import com.why.studentmanager.service.TeacherService;
+import com.why.studentmanager.until.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ public class TeacherController {
 
     @PostMapping("/add_teacher/0")
     public String postAddTeacher(Teacher teacher,Model model){
+        teacher.setPassword(Md5Util.stringToMD5((teacher.getPassword())));
 
         int result = teacherService.addTeacher(teacher);
         if(result>0){
@@ -50,7 +52,7 @@ public class TeacherController {
     }
     @GetMapping("/updateteacher/{id}")
     public String getUpdateTeacher(@PathVariable("id")Integer id, Model model){
-        System.out.println("id = " + id );
+        //System.out.println("id = " + id );
         Teacher teacher = teacherService.findById(id);
         model.addAttribute("teacher",teacher);
         return "index/teacher/updateteacher";
@@ -59,7 +61,8 @@ public class TeacherController {
     public String postUpdateTeacher(@PathVariable("id")Integer id,Teacher teacher,Model model){
 
         teacher.setId(id);
-        System.out.println( " teacher = " + teacher );
+        //System.out.println( " teacher = " + teacher );
+        teacher.setPassword(Md5Util.stringToMD5((teacher.getPassword())));
         int result = teacherService.updateTeacher(teacher);
         if(result>0){
             List<Teacher> teachers = teacherService.findAllTeacher();

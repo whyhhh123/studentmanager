@@ -11,7 +11,6 @@
 
     <insert id="addStudent" parameterType="Student" >
         insert into s_student(sid,username,password,class_id,sex,mobile) values(#{sid},#{username},#{password},#{class_id},#{sex},#{mobile})
-
     </insert>
 
     <update id="updateStudent" parameterType="Student">
@@ -24,8 +23,7 @@
     </select>
 
 
-    <!--
-    -->
+
 
     <delete id="deleteStudent" parameterType="int" >
         delete from s_student where id=#{id}
