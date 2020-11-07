@@ -54,7 +54,7 @@ public class CourseController {
     public String updateCourse(@PathVariable("id")Integer id,Model model){
 
         Course course = courseService.findById(id);
-        System.out.println("course = " + course);
+
         model.addAttribute("course",course);
         List<Teacher> teachers = teacherService.findAllTeacher();
         model.addAttribute("teachers",teachers);
