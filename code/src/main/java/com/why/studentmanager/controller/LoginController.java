@@ -6,11 +6,14 @@ import com.why.studentmanager.domain.Teacher;
 import com.why.studentmanager.service.AdminService;
 import com.why.studentmanager.service.StudentService;
 import com.why.studentmanager.service.TeacherService;
+import com.why.studentmanager.until.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
@@ -45,20 +48,31 @@ public class LoginController {
         if(type.equals("1")){
             Student student = new Student();
             student.setUsername(username);
-            student.setPassword(password);
+            student.setPassword(Md5Util.stringToMD5(password));
             Student st =studentService.findByStudent(student);
             if(org.springframework.util.StringUtils.isEmpty(st)){
                 model.addAttribute("system","用户密码错误");
 
-                return "/login";
+                return "login";
             }
+            model.addAttribute("student",st);
             session.setAttribute("student",st);
-            return "/index/index";
+            return "index/studentindex";
         }
         else if(type.equals("2")){
             Teacher teacher = new Teacher();
             teacher.setUsername(username);
-            teacher.setPassword(password);
+            teacher.setPassword(Md5Util.stringToMD5(password));
+            Teacher te = teacherService.findByTeaceher(teacher);
+            System.out.println(te);
+            if(org.springframework.util.StringUtils.isEmpty(te)){
+                model.addAttribute("system","用户密码错误");
+
+                return "login";
+            }
+            model.addAttribute("teacher",te);
+            session.setAttribute("teacher",te);
+            return "index/teacherindex";
         }
         else if(type.equals("3")){
             Admin admin = new Admin();
@@ -68,16 +82,21 @@ public class LoginController {
             if(org.springframework.util.StringUtils.isEmpty(ad)){
                 model.addAttribute("system","用户密码错误");
 
-                return "/login";
+                return "login";
             }
+            model.addAttribute("admin",ad);
             session.setAttribute("admin",ad);
-            return"/index/index";
+            return"index/index";
 
         }
-        return "/login";
+        return "login";
     }
 
-
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "login";
+    }
 
 
 }

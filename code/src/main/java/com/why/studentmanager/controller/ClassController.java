@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,7 +25,7 @@ public class ClassController {
         List<Clazz> clazzes = classService.findAllClass();
 
         model.addAttribute("clazzes",clazzes);
-        return "/index/tables/classlist";
+        return "index/tables/classlist";
     }
 
     @GetMapping("/addclass")
@@ -35,7 +33,7 @@ public class ClassController {
         List<Teacher> teachers =teacherService.addTeacherClassid();
 
         model.addAttribute("teachers",teachers);
-        return "/index/class/addclass";
+        return "index/class/addclass";
     }
 
 
@@ -81,7 +79,7 @@ public class ClassController {
             List<Clazz> clazzes = classService.findAllClass();
 
             model.addAttribute("clazzes",clazzes);
-            return "/index/tables/classlist";
+            return "index/tables/classlist";
         }
         else{
             return "index/class/updateclass";
@@ -100,7 +98,7 @@ public class ClassController {
         else{
 
         }
-        return "/index/tables/classlist";
+        return "index/tables/classlist";
     }
 
 }

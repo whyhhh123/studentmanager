@@ -8,9 +8,7 @@ import com.why.studentmanager.until.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -28,6 +26,7 @@ public class StudentController {
     @GetMapping("/index/tables/studentlist")
     public String studentList(Model model){
         List<Student> students = studentService.findAllStudent();
+        System.out.println(students);
         model.addAttribute("sts",students);
 
         return "index/tables/studentlist";
@@ -37,7 +36,7 @@ public class StudentController {
     public String getAdd(Model model){
 
         List<Clazz> clazzes = classService.findAllClass();
-       // System.out.println("班级 = " + clazzes);
+        System.out.println("班级 = " + clazzes);
         model.addAttribute("clazzes",clazzes);
 
         return "index/student/addstudent";

@@ -6,6 +6,7 @@ public class Admin {
     private String username;
     private String password;
 
+
     public Integer getId() {
         return id;
     }

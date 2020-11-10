@@ -6,6 +6,9 @@
         select id,t.tid,username,password,t.class_id,sex,mobile from s_teacher t
     </select>
 
+    <select id="findByTeacher" parameterType="Teacher" resultType="Teacher">
+        select * from s_teacher where username = #{username} and password = #{password}
+    </select>
 
     <select id="addTeacherClassid" resultType="Teacher">
         select * from s_teacher where class_id = 0

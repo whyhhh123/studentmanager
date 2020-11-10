@@ -15,5 +15,6 @@ public interface TeacherService {
     Teacher findById(int id);
     int updateTeacher(Teacher teacher);
     int deleteTeacher(int id);
+    Teacher findByTeaceher(Teacher teacher);
 
 }

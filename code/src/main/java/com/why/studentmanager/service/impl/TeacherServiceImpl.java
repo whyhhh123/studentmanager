@@ -70,4 +70,10 @@ public class TeacherServiceImpl implements TeacherService {
         int result = teacherMapper.deleteTeacher(id);
         return result;
     }
+
+    @Override
+    public Teacher findByTeaceher(Teacher teacher) {
+        Teacher teacher1= teacherMapper.findByTeacher(teacher);
+        return teacher1;
+    }
 }

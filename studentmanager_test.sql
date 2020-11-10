@@ -11,8 +11,10 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 29/10/2020 00:49:35
+ Date: 07/11/2020 20:19:15
 */
+
+use database studentmanager_test;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -59,16 +61,17 @@ CREATE TABLE `s_class`  (
   `info` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `tid` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`class_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_class
 -- ----------------------------
-INSERT INTO `s_class` VALUES (1, '软件一班', 'ppp', 103);
-INSERT INTO `s_class` VALUES (2, '软件二班', '7', 103);
-INSERT INTO `s_class` VALUES (10, '计算机一班', NULL, 0);
-INSERT INTO `s_class` VALUES (11, '计算机一班', NULL, 0);
-INSERT INTO `s_class` VALUES (12, '计算机一班', '3', 103);
+INSERT INTO `s_class` VALUES (1, '计算机一班', '计算机', 101);
+INSERT INTO `s_class` VALUES (17, '软件一班', '软件', 0);
+INSERT INTO `s_class` VALUES (19, '计算机一班p', NULL, 0);
+INSERT INTO `s_class` VALUES (22, '计算机一班', 'a', 104);
+INSERT INTO `s_class` VALUES (23, '计算机一班dsfa ', '计算机一般', 4564);
+INSERT INTO `s_class` VALUES (24, '计算机一班789', '计算机一般', 152);
 
 -- ----------------------------
 -- Table structure for s_course
@@ -81,12 +84,14 @@ CREATE TABLE `s_course`  (
   `course_date` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `residue_num` int(0) NOT NULL,
   `max_num` int(0) NOT NULL,
+  `info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_course
 -- ----------------------------
+INSERT INTO `s_course` VALUES (3, '软件工程', 102, '骤热', 456, 456, '计算机一般');
 
 -- ----------------------------
 -- Table structure for s_leave
@@ -104,6 +109,7 @@ CREATE TABLE `s_leave`  (
 -- ----------------------------
 -- Records of s_leave
 -- ----------------------------
+INSERT INTO `s_leave` VALUES (1, 1, '生病', 1, '可以');
 
 -- ----------------------------
 -- Table structure for s_score
@@ -135,13 +141,14 @@ CREATE TABLE `s_student`  (
   `sex` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '男',
   `mobile` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_student
 -- ----------------------------
-INSERT INTO `s_student` VALUES (6, 128, 'why981124', 'a', 3, '女', '456');
 INSERT INTO `s_student` VALUES (11, 1, 'ad', '123', 2, '男', '456');
+INSERT INTO `s_student` VALUES (12, 123, 'admin', 'a', 1, '男', '456');
+INSERT INTO `s_student` VALUES (13, 128, '王麻子', '202cb962ac59075b964b07152d234b70', 22, '男', '31531');
 
 -- ----------------------------
 -- Table structure for s_teacher
@@ -156,15 +163,13 @@ CREATE TABLE `s_teacher`  (
   `sex` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '男',
   `mobile` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_teacher
 -- ----------------------------
-INSERT INTO `s_teacher` VALUES (9, 101, '张三', '111', 1, '男', '13918655656');
-INSERT INTO `s_teacher` VALUES (10, 102, '李四老师', '111', 2, '男', '13656565656');
-INSERT INTO `s_teacher` VALUES (11, 103, '李老师', '123456', 0, '男', '18989898989');
-INSERT INTO `s_teacher` VALUES (18, 104, '夏青松', '123456', 12, '女', '15174857845');
+INSERT INTO `s_teacher` VALUES (10, 102, '李四老师', '111', 15, '男', '13656565656');
+INSERT INTO `s_teacher` VALUES (18, 104, '夏青松', '123456', 22, '女', '15174857845');
 INSERT INTO `s_teacher` VALUES (19, 105, '光头强', '12345', 0, '男', '456456');
 
 SET FOREIGN_KEY_CHECKS = 1;
