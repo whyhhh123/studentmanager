@@ -24,4 +24,8 @@
         update s_leave set status = #{status},remark = #{remark}
     </update>
 
+    <update id="alterTable" >
+        ALTER TABLE s_leave AUTO_INCREMENT = 1;
+    </update>
+
 </mapper>

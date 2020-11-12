@@ -53,6 +53,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.2.6</version>
+        </dependency>
+        <dependency>
             <groupId>net.sourceforge.nekohtml</groupId>
             <artifactId>nekohtml</artifactId>
             <version>1.9.22</version>

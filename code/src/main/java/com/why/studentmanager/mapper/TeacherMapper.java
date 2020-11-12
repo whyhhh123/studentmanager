@@ -16,6 +16,7 @@ public interface TeacherMapper {
     int resetClass_id(int tid);
     int updateTeacher(Teacher teacher);
     int deleteTeacher(int id);
+    int alterTable();
 
 
 }

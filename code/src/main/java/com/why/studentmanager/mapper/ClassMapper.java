@@ -11,5 +11,6 @@ public interface ClassMapper {
     int updateClass(Clazz clazz);
     int deleteClass(Integer id);
     int setTid();
+    int alterTable();
 
 }

@@ -44,6 +44,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student findBySid(int sid) {
+        Student student = studentMapper.findBySid(sid);
+        return student;
+    }
+
+    @Override
     public Student findById(Integer id) {
         Student student = studentMapper.findById(id);
         return student;

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Home</title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" th:href="@{index/img/icon.ico}" type="image/x-icon"/>
+
+    <!-- Fonts and icons -->
+    <script th:src="@{index/js/plugin/webfont/webfont.min.js}"></script>
+    <script>
+        WebFont.load({
+            google: {"families":["Lato:300,400,700,900"]},
+            custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['/index/css/fonts.min.css']},
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+        });
+
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" th:href="@{index/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{index/css/atlantis.min.css}">
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" th:href="@{index/css/demo.css}">
+</head>
+<body>
+
+<!-- 模态框（Modal） -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+...more buttons...
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模态框（Modal）end -->
+<!--   Core JS Files   -->
+<script th:src="@{/index/js/core/jquery.3.2.1.min.js}"></script>
+<script th:src="@{/index/js/core/popper.min.js}"></script>
+<script th:src="@{/index/js/core/bootstrap.min.js}"></script>
+
+<!-- jQuery UI -->
+<script th:src="@{/index/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js}"></script>
+<script th:src="@{/index/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js}"></script>
+
+<!-- jQuery Scrollbar -->
+<script th:src="@{/index/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js}"></script>
+
+<!-- Chart JS -->
+<script th:src="@{/index/js/plugin/chart.js/chart.min.js}"></script>
+
+<!-- jQuery Sparkline -->
+<script th:src="@{/index/js/plugin/jquery.sparkline/jquery.sparkline.min.js}"></script>
+
+<!-- Chart Circle -->
+<script th:src="@{/index/js/plugin/chart-circle/circles.min.js}"></script>
+
+<!-- Datatables -->
+<script th:src="@{/index/js/plugin/datatables/datatables.min.js}"></script>
+
+<!-- Bootstrap Notify -->
+<script th:src="@{/index/js/plugin/bootstrap-notify/bootstrap-notify.min.js}"></script>
+
+<!-- jQuery Vector Maps -->
+<script th:src="@{index/js/plugin/jqvmap/jquery.vmap.min.js}"></script>
+<script th:src="@{/index/js/plugin/jqvmap/maps/jquery.vmap.world.js}"></script>
+
+<!-- Sweet Alert -->
+<script th:src="@{/index/js/plugin/sweetalert/sweetalert.min.js}"></script>
+
+<!-- Atlantis JS -->
+<script th:src="@{/index/js/atlantis.min.js}"></script>
+
+
+</body>
+</html>

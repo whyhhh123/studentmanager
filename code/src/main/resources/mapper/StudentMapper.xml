@@ -22,11 +22,18 @@
         select id,sid,username,password,s_class.class_id,sex,mobile,s_class.class_name from s_student,s_class where s_student.id = #{id} and s_student.class_id = s_class.class_id
     </select>
 
+    <select id="findBySid" parameterType="int" resultType="Student">
+        select id,sid,username,password,s_class.class_id,sex,mobile,s_class.class_name from s_student,s_class where s_student.sid=#{sid} and s_student.class_id = s_class.class_id
+    </select>
 
 
 
     <delete id="deleteStudent" parameterType="int" >
-        delete from s_student where id=#{id}
+        delete from s_score where id={#id}
     </delete>
+
+    <update id="alterTable" >
+        ALTER TABLE s_student AUTO_INCREMENT = 1;
+    </update>
 
 </mapper>

@@ -10,4 +10,5 @@ public interface LeaveMapper {
     Leave findById(int id);
     int updateLeave(Leave leave);
     List<Leave> findAllLeave();
+    int alterTable();
 }

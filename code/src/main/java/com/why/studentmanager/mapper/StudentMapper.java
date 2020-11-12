@@ -9,12 +9,14 @@ public interface StudentMapper {
 
     Student findByStudent(Student student);
     Student findById(Integer id);
+    Student findBySid(Integer sid);
 
     int addStudent(Student student);
 
     int updateStudent(Student student);
 
     int deleteStudent(Integer id);
+    int alterTable();
 
 
 }

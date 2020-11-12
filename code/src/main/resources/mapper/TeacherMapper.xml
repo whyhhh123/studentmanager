@@ -42,4 +42,8 @@
     <delete id="deleteTeacher" parameterType="int">
         delete from s_teacher where id = #{id}
     </delete>
+
+    <update id="alterTable" >
+        ALTER TABLE s_teacher AUTO_INCREMENT = 1;
+    </update>
 </mapper>

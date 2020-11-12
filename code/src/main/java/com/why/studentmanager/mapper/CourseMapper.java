@@ -11,5 +11,6 @@ public interface CourseMapper {
     int deleteCourse(int id);
     int addCourse(Course course);
     Course findById(int id);
+    int alterTable();
 }
 

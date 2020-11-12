@@ -23,4 +23,8 @@
         delete from s_class where class_id = #{class_id}
     </delete>
 
+    <update id="alterTable" >
+        ALTER TABLE s_class AUTO_INCREMENT = 1;
+    </update>
+
 </mapper>
