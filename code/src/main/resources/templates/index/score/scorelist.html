@@ -8,7 +8,8 @@
 	
 	<!-- Fonts and icons -->
 	<script th:src="@{/index/js/plugin/webfont/webfont.min.js}"></script>
-	<script>
+	<script >
+
 		WebFont.load({
 			google: {"families":["Lato:300,400,700,900"]},
 			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../../assets/css/fonts.min.css']},
@@ -28,7 +29,6 @@
 
 	<div class="wrapper">
 		<div class="main-header" th:insert="index/index::logoheader">
-
 		</div>
 		<!-- Sidebar -->
 		<div th:replace="index/index::sidebar"></div>

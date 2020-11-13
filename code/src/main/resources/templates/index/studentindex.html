@@ -52,7 +52,7 @@
 		</div>
 
 		<!-- Sidebar -->
-		<div class="sidebar sidebar-style-2" th:fragment="sidebar">
+		<div class="sidebar sidebar-style-2" th:fragment="studentsidebar">
 			<div class="sidebar-wrapper scrollbar scrollbar-inner">
 				<div class="sidebar-content">
 					<div class="user">
@@ -89,16 +89,21 @@
 					<ul class="nav nav-primary">
 
 						<li class="nav-item">
-							<a data-toggle="collapse" th:href="@{#tables}">
+							<a data-toggle="collapse" th:href="@{#tables1}">
 								<!--<i class="fas fa-table"></i>-->
 								<p>学生选课管理</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="tables">
+							<div class="collapse" id="tables1">
 								<ul class="nav nav-collapse">
 									<li>
-										<a th:href="@{/index/selectcurse/selectlist}" >
+										<a th:href="@{/selectlist}" >
 											<span class="sub-item">选课列表</span>
+										</a>
+									</li>
+									<li>
+										<a th:href="@{/selectedlist}" >
+											<span class="sub-item">已选课程</span>
 										</a>
 									</li>
 								</ul>

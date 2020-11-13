@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-
 public class AdminController {
     @Autowired
     private AdminService adminService;
@@ -26,4 +25,5 @@ public class AdminController {
     }
 
 }
+
 

@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class CourseController {
     @Autowired
-    private CourseServiceImpl courseService;
+    private CourseService courseService;
     @Autowired
     private TeacherService teacherService;
 
@@ -23,7 +23,6 @@ public class CourseController {
     public String courseList(Model model){
         List<Course> courses = courseService.findAllCourse();
         model.addAttribute("courses",courses);
-        //System.out.println("班级"+courses);
         return "index/tables/courselist";
     }
 
@@ -31,7 +30,6 @@ public class CourseController {
     public String addCourse(Model model){
         List<Teacher> teachers = teacherService.findAllTeacher();
         model.addAttribute("teachers",teachers);
-
         return("index/course/addcourse");
     }
 

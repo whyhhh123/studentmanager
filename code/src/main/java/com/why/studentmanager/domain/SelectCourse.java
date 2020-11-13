@@ -2,16 +2,8 @@ package com.why.studentmanager.domain;
 
 public class SelectCourse {
     private Integer id;
-    private Integer sId;
-
-    @Override
-    public String toString() {
-        return "SelectCourse{" +
-                "id=" + id +
-                ", sId=" + sId +
-                ", courseId=" + courseId +
-                '}';
-    }
+    private Integer sid;
+    private Integer courseId;
 
     public Integer getId() {
         return id;
@@ -21,12 +13,12 @@ public class SelectCourse {
         this.id = id;
     }
 
-    public Integer getsId() {
-        return sId;
+    public Integer getSid() {
+        return sid;
     }
 
-    public void setsId(Integer sId) {
-        this.sId = sId;
+    public void setSid(Integer sid) {
+        this.sid = sid;
     }
 
     public Integer getCourseId() {
@@ -37,5 +29,12 @@ public class SelectCourse {
         this.courseId = courseId;
     }
 
-    private Integer courseId;
+    @Override
+    public String toString() {
+        return "SelectCourse{" +
+                "id=" + id +
+                ", sid=" + sid +
+                ", courseId=" + courseId +
+                '}';
+    }
 }

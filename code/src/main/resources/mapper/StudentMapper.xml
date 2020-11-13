@@ -28,6 +28,7 @@
 
 
 
+
     <delete id="deleteStudent" parameterType="int" >
         delete from s_score where id={#id}
     </delete>

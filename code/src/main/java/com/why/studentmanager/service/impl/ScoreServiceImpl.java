@@ -5,6 +5,8 @@ import com.why.studentmanager.mapper.ScoreMapper;
 import com.why.studentmanager.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,8 +28,10 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public int deleteById(int id) {
         int result = scoreMapper.deleteById(id);
+        //scoreMapper.alterTable();
         return result;
     }
 

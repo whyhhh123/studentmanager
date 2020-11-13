@@ -5,6 +5,8 @@ import com.why.studentmanager.mapper.ClassMapper;
 import com.why.studentmanager.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,8 +40,10 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public int deleteClass(Integer class_id) {
         int result = classMapper.deleteClass(class_id);
+        //classMapper.alterTable();
         return result;
     }
 

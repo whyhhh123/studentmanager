@@ -3,8 +3,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.why.studentmanager.mapper.CourseMapper">
 
+
+    <update id="selectCourse" parameterType="SelectCourse" >
+        update s_course set residue_num = if(residue_num &lt;1,0,residue_num-1) where id=#{courseId}
+    </update>
+
+    <update id="decSelected">
+        update s_course set residue_num = if(residue_num &gt; max_num-1,max_num,residue_num+1) where id=#{id}
+    </update>
+
     <update id="updateCourse" parameterType="Course">
-        updata s_course set name = #{name},tid = #{tid},course_date = #{course_date},residue_num = #{residue_num},max_num = #{num} where id = #{id}
+        update s_course set name = #{name},tid = #{tid},course_date = #{course_date},residue_num = #{residue_num},max_num = #{num} where id = #{id}
     </update>
 
     <select id="findAllCourse"  resultType="Course">
@@ -22,6 +31,8 @@
     <insert id="addCourse" parameterType="Course" >
         insert into s_course(name,tid,course_date,residue_num,max_num,info) values(#{name},#{tid},#{courseDate},#{maxNum},#{maxNum},#{info})
     </insert>
+
+
 
     <update id="alterTable" >
         ALTER TABLE s_course AUTO_INCREMENT = 1;

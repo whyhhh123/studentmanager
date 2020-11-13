@@ -5,6 +5,8 @@ import com.why.studentmanager.mapper.LeaveMapper;
 import com.why.studentmanager.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,8 +22,10 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public int deleteById(int id) {
         int result = leaveMapper.deleteById(id);
+        //leaveMapper.alterTable();
         return result;
     }
 

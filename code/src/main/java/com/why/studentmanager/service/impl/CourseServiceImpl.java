@@ -5,6 +5,8 @@ import com.why.studentmanager.mapper.CourseMapper;
 import com.why.studentmanager.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,8 +34,10 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public int deleteCourse(int id) {
         int result = courseMapper.deleteCourse(id);
+        courseMapper.alterTable();
         return result;
     }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.why.studentmanager.mapper.SelectCourseMapper">
+
+    <insert id="addSelectCourse">
+        insert into s_select_course(sid,course_id) values(#{sid},#{courseId})
+    </insert>
+
+    <select id="findSelect" parameterType="SelectCourse" resultType="SelectCourse">
+        select * from s_select_course where sid = #{sid} and course_id=#{courseId}
+    </select>
+
+    <select id="findById">
+        select * from s_select_course where id = #{id}
+    </select>
+
+    <select id="showSelected" parameterType="int" resultType="Course">
+        select s_course.name,s_course.id,course_date as courseDate,info,username as teacherName from s_select_course,s_course,s_teacher where s_course.id=s_select_course.course_id and s_teacher.tid=s_course.tid and sid=#{sid}
+    </select>
+
+    <delete id="deleteById">
+        delete from s_select_course where id = #{id}
+    </delete>
+
+    <update id="alterTable" >
+        ALTER TABLE s_select_course AUTO_INCREMENT = 1;
+    </update>
+
+</mapper>
