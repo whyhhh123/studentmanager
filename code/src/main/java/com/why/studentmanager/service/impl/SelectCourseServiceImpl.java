@@ -25,7 +25,7 @@ public class SelectCourseServiceImpl implements SelectCourseService {
         SelectCourse s = selectCourseMapper.findSelect(selectCourse);
         if(StringUtils.isEmpty(s)){
             int result = courseMapper.selectCourse(selectCourse);
-            System.out.println(result);
+
             if(result==0){
                 return 0;
             }

@@ -110,23 +110,6 @@
 							</div>
 						</li>
 
-
-						<li class="nav-item">
-							<a data-toggle="collapse" th:href="@{#tables3}">
-								<!--<i class="fas fa-table"></i>-->
-								<p>课程信息管理</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="tables3">
-								<ul class="nav nav-collapse">
-									<li>
-										<a th:href="@{/index/tables/courselist}" th:method="post">
-											<span class="sub-item">课程列表</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
 						<li class="nav-item">
 							<a data-toggle="collapse" th:href="@{#tables4}">
 								<!--<i class="fas fa-table"></i>-->
@@ -136,8 +119,24 @@
 							<div class="collapse" id="tables4">
 								<ul class="nav nav-collapse">
 									<li>
-										<a th:href="@{/index/tables/leavelist}" th:method="post">
+										<a th:href="@{/index/tables/studentleavelist/}+${student.getSid()}">
 											<span class="sub-item">请假列表</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" th:href="@{#tables5}">
+								<!--<i class="fas fa-table"></i>-->
+								<p>成绩查看</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables5">
+								<ul class="nav nav-collapse">
+									<li>
+										<a th:href="@{/index/score/studentscore}" >
+											<span class="sub-item">成绩列表</span>
 										</a>
 									</li>
 								</ul>

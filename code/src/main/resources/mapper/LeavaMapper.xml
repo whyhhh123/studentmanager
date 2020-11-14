@@ -20,8 +20,12 @@
         select s_leave.id,s_leave.sid,s_student.username as sName,info,status,remark from s_leave,s_student where s_student.sid = s_leave.sid
     </select>
 
+    <select id="findBySid" resultType="Leave">
+        select s_leave.id,s_leave.sid,s_student.username as sName,info,status,remark from s_leave,s_student where s_student.sid = s_leave.sid and s_leave.sid = #{sid}
+    </select>
+
     <update id="updateLeave" parameterType="Leave">
-        update s_leave set status = #{status},remark = #{remark}
+        update s_leave set status = #{status},remark = #{remark} where id =#{id}
     </update>
 
     <update id="alterTable" >

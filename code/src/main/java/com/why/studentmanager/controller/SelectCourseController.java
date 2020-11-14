@@ -26,7 +26,6 @@ public class SelectCourseController {
     @GetMapping("/selectlist")
     public String selectlist(Model model, HttpServletRequest request){
         Student student = (Student) request.getSession().getAttribute("student");
-        model.addAttribute("msg","dafa");
         model.addAttribute("student",student);
         List<Course> courseList = courseService.findAllCourse();
         model.addAttribute("courselist",courseList);
@@ -38,15 +37,14 @@ public class SelectCourseController {
     public AjaxResult addSelectCourse(SelectCourse selectCourse, Model model){
 
         AjaxResult ajaxResult = new AjaxResult();
-
-       int result =  selectCourseService.addSelectCourse(selectCourse);
+        System.out.println("selectCourse = " + selectCourse);
+        int result =  selectCourseService.addSelectCourse(selectCourse);
 
        if(result == 1){
            ajaxResult.setMsg("选课成功");
            ajaxResult.setStatus(true);
        }
        else if(result == 0){
-
            ajaxResult.setStatus(false);
            ajaxResult.setMsg("课程已满");
        }

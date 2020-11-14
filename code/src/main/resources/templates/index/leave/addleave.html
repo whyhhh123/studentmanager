@@ -39,7 +39,7 @@
         <!-- End Navbar -->
     </div>
     <!-- Sidebar -->
-    <div th:replace="index/index::sidebar"></div>
+    <div th:replace="index/studentindex::studentsidebar"></div>
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
@@ -50,29 +50,19 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">审批请假</h4>
+                                <h4 class="card-title" >请假</h4>
+
                             </div>
                             <div class="card-body">
-                                <form th:method="post" th:action="@{/updateleave/}+${leave.getId()}">
-
+                                <form th:method="post" th:action="@{/addleave/}+${student.getSid()}">
                                     <div class="form-group form-floating-label">
-                                        <input id="remark" type="text" class="form-control input-border-bottom" name="remark" required>
-                                        <label for="remark" class="placeholder">批复内容</label>
+                                        <input id="info" type="text" class="form-control input-border-bottom" name="info" required>
+                                        <label for="info" class="placeholder">请假原因</label>
+
                                     </div>
-                                    <div class="form-group form-floating-label">
-                                        <select class="form-control input-border-bottom" id="status" name="status" required>
-
-                                            <option  th:text="等待审核" th:value="0"></option>
-                                            <option  th:text="通过" th:value="1"></option>
-                                            <option  th:text="驳回请求" th:value="2"></option>
-
-                                        </select>
-                                        <label for="status" class="placeholder">批复状态</label>
-                                    </div>
-
                                     <input type="submit" class="btn btn-primary btn-xs">
-
                                 </form>
+
                             </div>
                         </div>
                     </div>

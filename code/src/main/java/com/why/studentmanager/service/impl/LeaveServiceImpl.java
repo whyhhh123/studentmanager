@@ -25,7 +25,7 @@ public class LeaveServiceImpl implements LeaveService {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public int deleteById(int id) {
         int result = leaveMapper.deleteById(id);
-        //leaveMapper.alterTable();
+        leaveMapper.alterTable();
         return result;
     }
 
@@ -44,6 +44,12 @@ public class LeaveServiceImpl implements LeaveService {
     @Override
     public List<Leave> findAllLeave() {
         List<Leave> leaves = leaveMapper.findAllLeave();
+        return leaves;
+    }
+
+    @Override
+    public List<Leave> findBySid(int sid) {
+        List<Leave> leaves = leaveMapper.findBySid(sid);
         return leaves;
     }
 }

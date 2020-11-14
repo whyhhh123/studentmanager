@@ -10,4 +10,5 @@ public interface LeaveService {
     Leave findById(int id);
     int updateLeave(Leave leave);
     List<Leave> findAllLeave();
+    List<Leave> findBySid(int sid);
 }

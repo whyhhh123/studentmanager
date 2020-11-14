@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -32,6 +33,18 @@ public class ScoreController {
         List<Course> courses = courseService.findAllCourse();
         model.addAttribute("courses",courses);
         return "/index/score/scorelist";
+    }
+
+    @GetMapping("/index/score/studentscore")
+    public String studentscoreList(Model model, HttpServletRequest request){
+        Student student = (Student) request.getSession().getAttribute("student");
+        model.addAttribute("student",student);
+        List<Score> scores = scoreService.findAllScore();
+        System.out.println(student);
+        model.addAttribute("scores",scores);
+        List<Course> courses = courseService.findAllCourse();
+        model.addAttribute("courses",courses);
+        return "/index/score/studentscorelist";
     }
 
     @PostMapping("/addscore")

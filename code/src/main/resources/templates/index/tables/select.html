@@ -63,7 +63,7 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="multi-filter-select" class="display table table-striped table-hover" >
+										<table id="multi-filter-select" class="display table table-striped table-hovera" >
 											<thead>
 											<tr>
 												<th>课程名</th>
@@ -81,10 +81,10 @@
 												<td th:text="${course.getCourseDate()}"></td>
 												<td th:text="${course.getResidueNum()}"></td>
 												<td th:text="${course.getMaxNum()}"></td>
-												<p id="sid" th:text="${student.getSid()}" hidden></p>
-												<p id="cid" th:text="${course.getId()}" hidden></p>
+												<p th:id="sid" th:text="${student.getSid()}" ></p>
+												<p th:id="cid" th:text="${course.getId()}" ></p>
 												<td>
-													<button id="select" class="btn btn-sm btn-primary" >选课</button>
+													<button th:id="select" class="btn btn-sm btn-primary" >选课</button>
 
 												</td>
 											</tr>
