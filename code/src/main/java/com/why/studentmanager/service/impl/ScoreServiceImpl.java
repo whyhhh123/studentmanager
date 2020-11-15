@@ -43,6 +43,7 @@ public class ScoreServiceImpl implements ScoreService {
 
     @Override
     public int addScore(Score score) {
+        System.out.println("score = " + score);
         int result = scoreMapper.addScore(score);
         return result;
     }
@@ -50,6 +51,12 @@ public class ScoreServiceImpl implements ScoreService {
     @Override
     public int updateScore(Score score) {
         int result = scoreMapper.updateScore(score);
+        return result;
+    }
+
+    @Override
+    public int findByScore(Score score) {
+        int result = scoreMapper.findByScore(score);
         return result;
     }
 }

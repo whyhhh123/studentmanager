@@ -15,5 +15,6 @@ public interface CourseMapper {
     int selectCourse(SelectCourse selectCourse);
     int decSelected(int id);
     int alterTable();
+    List<Course> selectedCourse(int sid);
 }
 

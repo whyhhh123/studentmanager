@@ -9,5 +9,5 @@ public interface SelectCourseService {
     int addSelectCourse(SelectCourse selectCourse);
     List<Course> showSelected(int sid);
     int deleteBySelectCourse(SelectCourse selectCourse);
-
+    SelectCourse findSelect(SelectCourse selectCourse);
 }

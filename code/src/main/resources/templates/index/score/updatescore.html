@@ -43,41 +43,24 @@
 								<div class="card-header">
 									<h4 class="card-title">成绩表</h4>
 								</div>
-								<div class="card-body">
-									<a type="button" class="btn btn-primary btn-xs" th:href="@{/addscore}" >添加</a>
-									<a class="btn btn-primary btn-xs" th:href="@{/uplod}">导入</a>
-									<a class="btn btn-primary btn-xs" th:href="@{/downloadEasyExcel}">导出</a>
+								<div class="form-group form-floating-label">
+									<p></p>
+									<p id="sid" type="text" th:text="'学号:'+${score.getSid()}"></p>
 
-									<div class="table-responsive">
-										<table id="multi-filter-select" class="display table table-striped table-hover" >
-											<thead>
-												<tr>
-													<th>学号</th>
-													<th>姓名</th>
-													<th>班级</th>
-													<th>课程</th>
-													<th>成绩</th>
-													<th>备注</th>
-													<th>操作</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr th:each="score:${scores}">
-													<td th:text="${score.getSid()}"></td>
-													<td th:text="${score.getsName()}"></td>
-													<td th:text="${score.getClassName()}"></td>
-													<td th:text="${score.getCourseName()}"></td>
-													<td th:text="${score.getScore()}"></td>
-													<td th:text="${score.getRemark()}"></td>
-													<td>
-														<a class="btn btn-sm btn-primary" th:href="@{/updatescore/}+${score.getId()}">编辑</a>
-														<a class="btn btn-sm btn-danger" th:href="@{/deletescore/}+${score.getId()}">删除</a>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
 								</div>
+								<form th:method="post" th:action="@{/updatescore/}+${score.getId()}">
+
+
+									<div class="form-group form-floating-label">
+										<input id="score" type="text" class="form-control input-border-bottom" name="score" required>
+										<label for="score" class="placeholder">成绩</label>
+									</div>
+									<div class="form-group form-floating-label">
+										<input id="remark" type="text" class="form-control input-border-bottom" name="remark" required>
+										<label for="remark" class="placeholder">备注</label>
+									</div>
+									<input type="submit" class="btn btn-primary btn-xs">
+								</form>
 							</div>
 						</div>
 					</div>

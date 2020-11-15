@@ -32,6 +32,9 @@
         insert into s_course(name,tid,course_date,residue_num,max_num,info) values(#{name},#{tid},#{courseDate},#{maxNum},#{maxNum},#{info})
     </insert>
 
+    <select id="selectedCourse" parameterType="int" resultType="Course">
+        select s_course.`name`,s_select_course.course_id from s_select_course,s_course,s_score where s_select_course.sid=#{sid} and s_select_course.course_id=s_course.id
+    </select>
 
 
     <update id="alterTable" >

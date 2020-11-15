@@ -47,4 +47,10 @@ public class CourseServiceImpl implements CourseService {
         Course course = courseMapper.findById(id);
         return course;
     }
+
+    @Override
+    public List<Course> selectedCourse(int sid) {
+        List<Course> courses = courseMapper.selectedCourse(sid);
+        return null;
+    }
 }

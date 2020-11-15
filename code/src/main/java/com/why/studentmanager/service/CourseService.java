@@ -10,4 +10,5 @@ public interface CourseService {
     int updateCourse(Course course);
     int deleteCourse(int id);
     Course findById(int id);
+    List<Course> selectedCourse(int sid);
 }

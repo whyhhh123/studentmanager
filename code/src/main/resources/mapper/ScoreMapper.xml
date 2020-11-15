@@ -7,7 +7,7 @@
         SELECT
             s_score.id,
             s_score.sid,
-            s_score.course_id,
+            s_score.course_id as courseId,
             s_course.NAME as courseName,
             score,
             remark,
@@ -25,13 +25,43 @@
 
     </select>
 
+    <select id="findById" resultType="Score">
+        SELECT
+            s_score.id,
+            s_score.sid,
+            s_score.course_id as courseId,
+            s_course.NAME as courseName,
+            score,
+            remark,
+            s_student.username as sName,
+            class_name as className
+        FROM
+            s_score,
+            s_student,
+            s_course,
+            s_class
+        WHERE
+            s_score.id = #{id}
+            AND s_score.sid = s_student.sid
+            AND s_course.id = s_score.course_id
+            AND s_score.class_id = s_class.class_id;
+
+    </select>
+
+    <select id="findByScore" resultType="int">
+        select id from s_score where sid = #{sid} and course_id = #{courseId}
+    </select>
     <insert id="addScore" parameterType="Score" >
-        insert into s_score(class_id,sid,course_id,score) values ((select class_id from s_student where s_student.sid = #{sid}),#{sid},#{course_id},#{score});
+        insert into s_score(class_id,sid,course_id,score) values (#{classId},#{sid},#{courseId},#{score});
     </insert>
 
     <delete id="deleteById" parameterType="int">
         delete from s_score where id=#{id}
     </delete>
+
+    <update id="updateScore" parameterType="Score">
+        update s_score set score = #{score} ,remark = #{remark} where s_score.id = #{id}
+    </update>
 
     <update id="alterTable" >
         ALTER TABLE s_score AUTO_INCREMENT = 1;

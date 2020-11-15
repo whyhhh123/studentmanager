@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.why.studentmanager.mapper.UploadEasyExcelMapper">
+    <select id="selectAll" resultType="UploadEasyExcelData">
+         SELECT
+            s_score.sid,
+            s_course.NAME as courseName,
+            score,
+            remark,
+            s_student.username as sName,
+            class_name as className
+        FROM
+            s_score,
+            s_student,
+            s_course,
+            s_class
+        WHERE
+             s_score.sid = s_student.sid
+            AND s_course.id = s_score.course_id
+            AND s_score.class_id = s_class.class_id;
+    </select>
+
+
+</mapper>

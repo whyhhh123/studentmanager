@@ -69,4 +69,12 @@ public class SelectCourseServiceImpl implements SelectCourseService {
         }
         return 0;
     }
+
+    @Override
+    public SelectCourse findSelect(SelectCourse selectCourse) {
+        SelectCourse selectCourse1 = selectCourseMapper.findSelect(selectCourse);
+        return selectCourse1;
+    }
+
+
 }
