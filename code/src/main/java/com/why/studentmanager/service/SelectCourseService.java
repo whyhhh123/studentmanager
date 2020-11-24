@@ -1,5 +1,7 @@
 package com.why.studentmanager.service;
 
+import com.why.studentmanager.domain.Attend;
+import com.why.studentmanager.domain.Attendance;
 import com.why.studentmanager.domain.Course;
 import com.why.studentmanager.domain.SelectCourse;
 
@@ -10,4 +12,7 @@ public interface SelectCourseService {
     List<Course> showSelected(int sid);
     int deleteBySelectCourse(SelectCourse selectCourse);
     SelectCourse findSelect(SelectCourse selectCourse);
+
+
+
 }

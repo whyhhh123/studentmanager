@@ -1,5 +1,7 @@
 package com.why.studentmanager.mapper;
 
+import com.why.studentmanager.domain.Attend;
+import com.why.studentmanager.domain.Attendance;
 import com.why.studentmanager.domain.Course;
 import com.why.studentmanager.domain.SelectCourse;
 
@@ -12,5 +14,8 @@ public interface SelectCourseMapper {
     SelectCourse findById(int id);
     int alterTable();
     List<Course> showSelected(int sid);
+
+    List<SelectCourse> findByCourseId(int courseId);
+
 
 }

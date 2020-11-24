@@ -15,6 +15,13 @@
         select * from s_select_course where id = #{id}
     </select>
 
+    <select id="findByCourseId" resultType="SelectCourse">
+        select id from s_select_course where course_id = #{courseId}
+    </select>
+
+
+
+
     <select id="showSelected" parameterType="int" resultType="Course">
         select s_course.name,s_course.id,course_date as courseDate,info,username as teacherName from s_select_course,s_course,s_teacher where s_course.id=s_select_course.course_id and s_teacher.tid=s_course.tid and sid=#{sid}
     </select>

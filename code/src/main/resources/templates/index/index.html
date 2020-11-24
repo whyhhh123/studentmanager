@@ -57,12 +57,14 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
+							<img th:src="@{/image/admin.png}" alt="..." class="avatar-img rounded-circle">
+
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" th:href="@{#collapseExample}" aria-expanded="true">
 								<span>
-									<p > username</p>
-									<span class="user-level" >type</span>
+									<p th:text="${session.admin.getUsername()}"> </p>
+									<span class="user-level" th:text="管理员"></span>
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -71,7 +73,7 @@
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
-										<a href="#edit">
+										<a href="#edit" th:href="@{/adminupdatepwd}">
 											<span class="link-collapse">编辑资料</span>
 										</a>
 									</li>
@@ -154,6 +156,22 @@
 							</div>
 						</li>
 						<li class="nav-item">
+							<a data-toggle="collapse" th:href="@{#tables7}">
+								<!--<i class="fas fa-table"></i>-->
+								<p>考勤信息管理</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables7">
+								<ul class="nav nav-collapse">
+									<li>
+										<a th:href="@{/attendlist}">
+											<span class="sub-item">考勤列表</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
 							<a data-toggle="collapse" th:href="@{#tables4}">
 								<!--<i class="fas fa-table"></i>-->
 								<p>请假信息管理</p>
@@ -208,7 +226,9 @@
 				</div>
 			</div>
 
+
 		</div>
+
 		
 		<!-- Custom template | don't include it in your project! -->
 

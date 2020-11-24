@@ -17,7 +17,11 @@
     </update>
 
     <select id="findAllCourse"  resultType="Course">
-    select s_course.id,name,username as teacherName,course_date as courseDate,residue_num as residueNum,max_num as maxNum from s_course,s_teacher where s_course.tid = s_teacher.tid and s_course.residue_num>0
+        select s_course.id,name,username as teacherName,course_date as courseDate,residue_num as residueNum,max_num as maxNum from s_course,s_teacher where s_course.tid = s_teacher.tid and s_course.residue_num>-1
+    </select>
+
+    <select id="findByTid"  resultType="Course">
+        select s_course.id,name,username as teacherName,course_date as courseDate,residue_num as residueNum,max_num as maxNum from s_course,s_teacher where s_teacher.tid = #{tid} and s_course.tid = s_teacher.tid
     </select>
 
     <select id="findById" parameterType="int" resultType="Course">
@@ -31,11 +35,6 @@
     <insert id="addCourse" parameterType="Course" >
         insert into s_course(name,tid,course_date,residue_num,max_num,info) values(#{name},#{tid},#{courseDate},#{maxNum},#{maxNum},#{info})
     </insert>
-
-    <select id="selectedCourse" parameterType="int" resultType="Course">
-        select s_course.`name`,s_select_course.course_id from s_select_course,s_course,s_score where s_select_course.sid=#{sid} and s_select_course.course_id=s_course.id
-    </select>
-
 
     <update id="alterTable" >
         ALTER TABLE s_course AUTO_INCREMENT = 1;

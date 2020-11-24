@@ -1,5 +1,7 @@
 package com.why.studentmanager.service.impl;
 
+import com.why.studentmanager.domain.Attend;
+import com.why.studentmanager.domain.Attendance;
 import com.why.studentmanager.domain.Course;
 import com.why.studentmanager.domain.SelectCourse;
 import com.why.studentmanager.mapper.CourseMapper;
@@ -55,12 +57,11 @@ public class SelectCourseServiceImpl implements SelectCourseService {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public int deleteBySelectCourse(SelectCourse selectCourse) {
         SelectCourse sc = selectCourseMapper.findSelect(selectCourse);
-
         int rs = selectCourseMapper.deleteById(sc.getId());
         if(rs>0){
             selectCourseMapper.alterTable();
             int result = courseMapper.decSelected(selectCourse.getCourseId());
-
+            System.out.println(result);
             if(result>0){
                 courseMapper.alterTable();
                 return 1;
@@ -75,6 +76,10 @@ public class SelectCourseServiceImpl implements SelectCourseService {
         SelectCourse selectCourse1 = selectCourseMapper.findSelect(selectCourse);
         return selectCourse1;
     }
+
+
+
+
 
 
 }

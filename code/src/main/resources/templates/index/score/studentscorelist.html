@@ -32,100 +32,7 @@
 		</div>
 		<!-- Sidebar -->
 		<div th:replace="index/studentindex::studentsidebar"></div>
-		<!--<div class="sidebar sidebar-style-2">
-			<div class="sidebar-wrapper scrollbar scrollbar-inner">
-				<div class="sidebar-content">
-					<div class="user">
-						<div class="avatar-sm float-left mr-2">
-						</div>
-						<div class="info">
-							<a data-toggle="collapse" th:href="@{#collapseExample}" aria-expanded="true">
-								<span>
-									<p th:text="${student.getUsername()}"></p>
-									<span class="user-level" th:text="学生"></span>
-									<span class="caret"></span>
-								</span>
-							</a>
-							<div class="clearfix"></div>
 
-							<div class="collapse in" id="collapseExample">
-								<ul class="nav">
-									<li>
-										<a href="#edit">
-											<span class="link-collapse">编辑资料</span>
-										</a>
-									</li>
-									<li>
-										<a href="/logout">
-											<span class="link-collapse">
-												登出
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<ul class="nav nav-primary">
-
-						<li class="nav-item">
-							<a data-toggle="collapse" th:href="@{#tables1}">
-								&lt;!&ndash;<i class="fas fa-table"></i>&ndash;&gt;
-								<p>学生选课管理</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="tables1">
-								<ul class="nav nav-collapse">
-									<li>
-										<a th:href="@{/selectlist}" >
-											<span class="sub-item">选课列表</span>
-										</a>
-									</li>
-									<li>
-										<a th:href="@{/selectedlist}" >
-											<span class="sub-item">已选课程</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-
-						<li class="nav-item">
-							<a data-toggle="collapse" th:href="@{#tables4}">
-								&lt;!&ndash;<i class="fas fa-table"></i>&ndash;&gt;
-								<p>请假信息管理</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="tables4">
-								<ul class="nav nav-collapse">
-									<li>
-										<a th:href="@{/index/tables/studentleavelist}">
-											<span class="sub-item">请假列表</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" th:href="@{#tables5}">
-								&lt;!&ndash;<i class="fas fa-table"></i>&ndash;&gt;
-								<p>成绩查看</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="tables5">
-								<ul class="nav nav-collapse">
-									<li>
-										<a th:href="@{/index/score/studentscore}" >
-											<span class="sub-item">成绩列表</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>-->
 
 		<div class="main-panel">
 			<div class="content">
@@ -139,10 +46,6 @@
 									<h4 class="card-title">成绩表</h4>
 								</div>
 								<div class="card-body">
-									<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal" >添加</button>
-									<a class="btn btn-primary btn-xs" th:href="@{/uplod}">导入</a>
-									<a class="btn btn-primary btn-xs" th:href="@{/download}">导出</a>
-
 									<div class="table-responsive">
 										<table id="multi-filter-select" class="display table table-striped table-hover" >
 											<thead>
@@ -153,7 +56,6 @@
 													<th>课程</th>
 													<th>成绩</th>
 													<th>备注</th>
-													<th>操作</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -164,10 +66,6 @@
 													<td th:text="${score.getCourseName()}"></td>
 													<td th:text="${score.getScore()}"></td>
 													<td th:text="${score.getRemark()}"></td>
-													<td>
-														<a class="btn btn-sm btn-primary" th:href="@{/updatescore/}+${score.getId()}">编辑</a>
-														<a class="btn btn-sm btn-danger" th:href="@{/deletescore/}+${score.getId()}">删除</a>
-													</td>
 												</tr>
 											</tbody>
 										</table>
@@ -186,45 +84,6 @@
 
 
 
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-
-				<div class="card-body">
-					<form th:method="post" th:action="@{/addscore}">
-
-						<div class="form-group form-floating-label">
-							<input id="sid" type="text" class="form-control input-border-bottom" name="sid" required>
-							<label for="sid" class="placeholder">学号</label>
-						</div>
-
-						<div class="form-group form-floating-label">
-							<select class="form-control input-border-bottom" id="course_id" name="course_id" required>
-								<option th:value="0"> </option>
-								<option th:each="course:${courses}" th:text="${course.getName()}" th:value="${course.getId()}"></option>
-							</select><label for="course_id" class="placeholder">课程</label>
-						</div>
-
-						<div class="form-group form-floating-label">
-							<input id="score" type="text" class="form-control input-border-bottom" name="score" required>
-							<label for="score" class="placeholder">成绩</label>
-						</div>
-
-						<div class="form-group form-floating-label">
-							<input id="remark" type="text" class="form-control input-border-bottom" name="remark" required>
-							<label for="remark" class="placeholder">备注</label>
-						</div>
-
-						<div class="modal-footer">
-							<button type="reset" class="btn btn-default" >重置</button>
-							<button type="submit" class="btn btn-primary">提交</button>
-						</div>
-					</form>
-				</div>
-
-			</div>
-		</div>
-	</div>
 	<!--   Core JS Files   -->
 	<script th:src="@{/index/js/core/jquery.3.2.1.min.js}"></script>
 	<script th:src="@{/index/js/core/popper.min.js}"></script>

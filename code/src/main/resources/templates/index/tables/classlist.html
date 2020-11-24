@@ -43,6 +43,7 @@
 								<div class="card-header">
 									<h4 class="card-title">班级表</h4>
 								</div>
+								<p style="color:red" th:text="${nodeleteclass}" th:if="${not #strings.isEmpty(nodeleteclass)}"></p>
 								<div class="card-body">
 									<a class="btn btn-primary btn-xs" th:href="@{/addclass}">添加班级
 									</a>

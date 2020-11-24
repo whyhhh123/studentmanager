@@ -20,9 +20,15 @@ public class LeaveController {
     @GetMapping("/index/tables/leavelist")
     public String leaveList(Model model){
         List<Leave> leaveList = leaveService.findAllLeave();
-        //System.out.println(leaveList);
         model.addAttribute("leaveList",leaveList);
         return "index/tables/leavelist";
+    }
+
+    @GetMapping("/teacherleavelist/{tid}")
+    public String teacherleaveList(Model model){
+        List<Leave> leaveList = leaveService.findAllLeave();
+        model.addAttribute("leaveList",leaveList);
+        return "index/tables/teacherleavelist";
     }
 
     @GetMapping("/index/tables/studentleavelist/{sid}")

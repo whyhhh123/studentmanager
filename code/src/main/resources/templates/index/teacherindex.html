@@ -57,12 +57,13 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
+							<img th:src="@{/image/teacher.png}" alt="..." class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" th:href="@{#collapseExample}" aria-expanded="true">
 								<span>
-									<p > username</p>
-									<span class="user-level" >type</span>
+									<p th:text="${session.teacher.getUsername()}"></p>
+									<span class="user-level" >老师</span>
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -71,7 +72,7 @@
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
-										<a href="#edit">
+										<a href="#edit" th:href="@{/teacherupdatepwd}">
 											<span class="link-collapse">编辑资料</span>
 										</a>
 									</li>
@@ -97,7 +98,7 @@
 							<div class="collapse" id="tables">
 								<ul class="nav nav-collapse">
 									<li>
-										<a th:href="@{/index/tables/studentlist}" >
+										<a th:href="@{/teacherstudentlist/}+${session.teacher.getTid()}" >
 											<span class="sub-item">学生列表</span>
 										</a>
 									</li>
@@ -105,22 +106,7 @@
 							</div>
 						</li>
 
-						<li class="nav-item">
-							<a data-toggle="collapse" th:href="@{#tables2}">
-								<!--<i class="fas fa-table"></i>-->
-								<p>班级信息管理</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="tables2">
-								<ul class="nav nav-collapse">
-									<li>
-										<a th:href="@{/index/tables/classlist}" th:method="post">
-											<span class="sub-item">班级列表</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+
 						<li class="nav-item">
 							<a data-toggle="collapse" th:href="@{#tables3}">
 								<!--<i class="fas fa-table"></i>-->
@@ -130,7 +116,7 @@
 							<div class="collapse" id="tables3">
 								<ul class="nav nav-collapse">
 									<li>
-										<a th:href="@{/index/tables/courselist}" th:method="post">
+										<a th:href="@{/teachercourselist/}+${session.teacher.getTid()}" th:method="post">
 											<span class="sub-item">课程列表</span>
 										</a>
 									</li>
@@ -146,8 +132,40 @@
 							<div class="collapse" id="tables4">
 								<ul class="nav nav-collapse">
 									<li>
-										<a th:href="@{/index/tables/leavelist}" th:method="post">
+										<a th:href="@{/teacherleavelist/}+${session.teacher.getTid()}" th:method="post">
 											<span class="sub-item">请假列表</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" th:href="@{#tables6}">
+								<!--<i class="fas fa-table"></i>-->
+								<p>考勤信息管理</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables6">
+								<ul class="nav nav-collapse">
+									<li>
+										<a th:href="@{/teaccherattendlist}" th:method="post">
+											<span class="sub-item">新建考勤</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" th:href="@{#tables5}">
+								<!--<i class="fas fa-table"></i>-->
+								<p>成绩信息管理</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="tables5">
+								<ul class="nav nav-collapse">
+									<li>
+										<a th:href="@{/teacherscorelist}" th:method="post">
+											<span class="sub-item">成绩列表</span>
 										</a>
 									</li>
 								</ul>

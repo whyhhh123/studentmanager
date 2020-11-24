@@ -54,6 +54,24 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<Student> findByClassId(int class_id) {
+        List<Student> students = findByClassId(class_id);
+        return students;
+    }
+
+    @Override
+    public int updatePwdByStudent(Student student) {
+        int result = studentMapper.updatePwdByStudent(student);
+        return result;
+    }
+
+    @Override
+    public List<Student> findByTid(int tid) {
+        List<Student> students =studentMapper.findByTid(tid);
+        return students;
+    }
+
+    @Override
     public Student findById(Integer id) {
         Student student = studentMapper.findById(id);
         return student;

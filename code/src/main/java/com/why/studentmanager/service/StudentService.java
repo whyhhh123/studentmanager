@@ -12,4 +12,7 @@ public interface StudentService {
     int updateStudent(Student student);
     int deleteStudent(Integer id);
     Student findBySid(int sid);
+    List<Student> findByClassId(int class_id);
+    int updatePwdByStudent(Student student);
+    List<Student> findByTid(int tid);
 }

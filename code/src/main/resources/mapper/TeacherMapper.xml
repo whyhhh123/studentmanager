@@ -39,6 +39,10 @@
         update S_teacher set tid = #{tid},username = #{username},password = #{password},sex = #{sex},mobile = #{mobile} where id = #{id}
     </update>
 
+    <update id="updatePwdByTeacher" parameterType="Teacher">
+        update s_teacher set password = #{password} where username = #{username}
+    </update>
+
     <delete id="deleteTeacher" parameterType="int">
         delete from s_teacher where id = #{id}
     </delete>

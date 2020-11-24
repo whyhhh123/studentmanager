@@ -45,9 +45,24 @@
 								</div>
 								<div class="card-body">
 									<a type="button" class="btn btn-primary btn-xs" th:href="@{/addscore}" >添加</a>
-									<a class="btn btn-primary btn-xs" th:href="@{/uplod}">导入</a>
+
 									<a class="btn btn-primary btn-xs" th:href="@{/downloadEasyExcel}">导出</a>
 
+									<form th:method="get" th:action="@{/downloadTemplate}">
+
+										<div class="form-group form-floating-label">
+											课程：
+											<select class=" btn   " id="courseName" name="courseId" required>
+
+												<option th:each="course:${courses}" th:text="${course.getName()}" th:value="${course.getId()}"></option>
+											</select>
+											<input type="submit" class="btn btn-primary btn-xs" th:value="导出模板"></input>
+										</div>
+									</form>
+									<form>
+										<input type="file" class="form-control form-control-file"accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="importFile" id="importFile">
+										<input type="submit" class="btn btn-primary btn-xs" th:value="导入成绩"></input>
+									</form>
 									<div class="table-responsive">
 										<table id="multi-filter-select" class="display table table-striped table-hover" >
 											<thead>

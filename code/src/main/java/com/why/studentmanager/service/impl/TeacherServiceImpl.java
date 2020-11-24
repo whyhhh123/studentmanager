@@ -80,4 +80,10 @@ public class TeacherServiceImpl implements TeacherService {
         Teacher teacher1= teacherMapper.findByTeacher(teacher);
         return teacher1;
     }
+
+    @Override
+    public int updatePwdByTeacher(Teacher teacher) {
+        int result = teacherMapper.updatePwdByTeacher(teacher);
+        return result;
+    }
 }

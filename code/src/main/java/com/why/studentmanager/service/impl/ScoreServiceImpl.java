@@ -55,8 +55,27 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public int findByScore(Score score) {
-        int result = scoreMapper.findByScore(score);
+    public Integer findByScore(Score score) {
+        Integer result = scoreMapper.findByScore(score);
         return result;
+    }
+
+    @Override
+    public List<Score> findBySid(int sid) {
+        List<Score> scores = scoreMapper.findBySid(sid);
+        return scores;
+
+    }
+
+    @Override
+    public List<Score> findByTid(int tid) {
+        List<Score> scores = scoreMapper.findByTid(tid);
+        return scores;
+    }
+
+    @Override
+    public List<Score> findByCourseId(int courseId) {
+        List<Score> scores = scoreMapper.findByCourseId(courseId);
+        return scores;
     }
 }

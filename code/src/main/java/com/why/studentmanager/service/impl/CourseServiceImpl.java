@@ -1,7 +1,9 @@
 package com.why.studentmanager.service.impl;
 
 import com.why.studentmanager.domain.Course;
+import com.why.studentmanager.domain.SelectCourse;
 import com.why.studentmanager.mapper.CourseMapper;
+import com.why.studentmanager.mapper.SelectCourseMapper;
 import com.why.studentmanager.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,18 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseMapper courseMapper;
+    @Autowired
+    private SelectCourseMapper selectCourseMapper;
 
     @Override
     public List<Course> findAllCourse() {
         List<Course> courses = courseMapper.findAllCourse();
+        return courses;
+    }
+
+    @Override
+    public List<Course> findByTid(int tid) {
+        List<Course> courses = courseMapper.findByTid(tid);
         return courses;
     }
 
@@ -36,9 +46,17 @@ public class CourseServiceImpl implements CourseService {
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public int deleteCourse(int id) {
-        int result = courseMapper.deleteCourse(id);
-        courseMapper.alterTable();
-        return result;
+        List<SelectCourse> selectCourses = selectCourseMapper.findByCourseId(id);
+        System.out.println(selectCourses);
+        if(selectCourses.size() == 0){
+            int result = courseMapper.deleteCourse(id);
+            courseMapper.alterTable();
+            return result;
+        }
+        else{
+            return 0;
+        }
+
     }
 
     @Override
@@ -48,9 +66,5 @@ public class CourseServiceImpl implements CourseService {
         return course;
     }
 
-    @Override
-    public List<Course> selectedCourse(int sid) {
-        List<Course> courses = courseMapper.selectedCourse(sid);
-        return null;
-    }
+
 }

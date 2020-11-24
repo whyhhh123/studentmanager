@@ -4,12 +4,12 @@ import com.why.studentmanager.domain.Course;
 import com.why.studentmanager.domain.Teacher;
 import com.why.studentmanager.service.CourseService;
 import com.why.studentmanager.service.TeacherService;
-import com.why.studentmanager.service.impl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -24,6 +24,15 @@ public class CourseController {
         List<Course> courses = courseService.findAllCourse();
         model.addAttribute("courses",courses);
         return "index/tables/courselist";
+    }
+
+    @GetMapping("/teachercourselist/{tid}")
+    public String courseList(@PathVariable("tid")int tid, HttpServletRequest request, Model model){
+        Teacher teacher = (Teacher) request.getSession().getAttribute("teacher");
+        model.addAttribute("teacher",teacher);
+        List<Course> courses = courseService.findByTid(tid);
+        model.addAttribute("courses",courses);
+        return "index/tables/teachercourselist";
     }
 
     @GetMapping("/addcourse")
@@ -60,7 +69,6 @@ public class CourseController {
     @PostMapping("/updatecourse/{id}")
     public String updateCourse(@PathVariable("id")Integer id,Model model,Course course){
         course.setId(id);
-
         int result = courseService.updateCourse(course);
         if(result>0){
             List<Course> courses = courseService.findAllCourse();
@@ -75,11 +83,19 @@ public class CourseController {
     @GetMapping("/deletecourse/{id}")
     public String deleteCourse(@PathVariable("id")Integer id,Model model){
         int result = courseService.deleteCourse(id);
+        System.out.println(result);
         if(result>0){
+
             List<Course> courses = courseService.findAllCourse();
             model.addAttribute("courses",courses);
             return "index/tables/courselist";
         }
-        return "index/tables/courselist";
+        else{
+            model.addAttribute("nodelete","删除失败：课程下已有学生选课");
+            List<Course> courses = courseService.findAllCourse();
+            model.addAttribute("courses",courses);
+            return "index/tables/courselist";
+        }
+
     }
 }

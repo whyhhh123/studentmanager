@@ -44,12 +44,12 @@
 <body>
 
 
-	<!--<div class="wrapper">
+	<div class="wrapper">
 		<div class="main-header" th:insert="index/index::logoheader">
 
 		</div>
-		&lt;!&ndash; Sidebar &ndash;&gt;
-		<div th:replace="index/index::studentsidebar"></div>
+		<!-- Sidebar -->
+		<div th:replace="index/studentindex::studentsidebar"></div>
 		<div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
@@ -61,35 +61,32 @@
 								<div class="card-header">
 									<h4 class="card-title">选课表</h4>
 								</div>
+								<p style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 								<div class="card-body">
-									&lt;!&ndash;<div class="table-responsive">
+									<div class="table-responsive">
 										<table id="multi-filter-select" class="display table table-striped table-hover" >
 											<thead>
 											<tr>
 												<th>课程名</th>
 												<th>授课教师</th>
 												<th>授课时间</th>
-												<th>剩余可选人数</th>
-												<th>最大可选人数</th>
 												<th>操作</th>
 											</tr>
 											</thead>
 											<tbody>
-											<tr th:each="course:${courselist}">
+											<tr th:each="course:${selectedCourses}">
 												<td th:text="${course.getName()}"></td>
 												<td th:text="${course.getTeacherName()}"></td>
 												<td th:text="${course.getCourseDate()}"></td>
-												<td th:text="${course.getResidueNum()}"></td>
-												<td th:text="${course.getMaxNum()}"></td>
 
 												<td>
-													<a class="btn btn-sm btn-primary" th:href="@{/updatecourse/}+${course.getId()}+${studnet.getSid()}">选课</a>
-
+													<a  class="btn btn-sm btn-primary" th:href="@{/deleteSelected/}+${student.getSid()}+@{/}+${course.getId()}">退课</a>
+													
 												</td>
 											</tr>
 											</tbody>
 										</table>
-									</div>&ndash;&gt;
+									</div>
 								</div>
 							</div>
 						</div>
@@ -100,49 +97,8 @@
 		</div>
 		
 
-	</div>-->
-
-
-
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-
-				<div class="card-body">
-					<form th:method="post" th:action="@{/addscore}">
-
-						<div class="form-group form-floating-label">
-							<input id="sid" type="text" class="form-control input-border-bottom" name="sid" required>
-							<label for="sid" class="placeholder">学号</label>
-						</div>
-
-						<div class="form-group form-floating-label">
-							<select class="form-control input-border-bottom" id="course_id" name="course_id" required>
-								<option th:value="0"> </option>
-								<option th:each="course:${courses}" th:text="${course.getName()}" th:value="${course.getId()}"></option>
-							</select><label for="course_id" class="placeholder">课程</label>
-						</div>
-
-						<div class="form-group form-floating-label">
-							<input id="score" type="text" class="form-control input-border-bottom" name="score" required>
-							<label for="score" class="placeholder">成绩</label>
-						</div>
-
-						<div class="form-group form-floating-label">
-							<input id="remark" type="text" class="form-control input-border-bottom" name="remark" required>
-							<label for="remark" class="placeholder">备注</label>
-						</div>
-
-						<div class="modal-footer">
-							<button type="reset" class="btn btn-default" >重置</button>
-							<button type="submit" class="btn btn-primary">提交</button>
-						</div>
-					</form>
-				</div>
-
-			</div>
-		</div>
 	</div>
+
 
 
 

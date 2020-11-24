@@ -13,12 +13,15 @@
     <select id="findAllClass" parameterType="int" resultType="Clazz">
         select s_class.class_id, s_class.class_name,info,s_teacher.username as teacher_name from s_class,s_teacher where s_teacher.class_id = s_class.class_id
     </select>
+
     <insert id="addClass" parameterType="Clazz" >
         insert into s_class(class_id,class_name,info,tid) values(#{class_id},#{class_name},#{info},#{tid})
     </insert>
+
     <update id="updateClass" parameterType="Clazz">
         update s_class set class_name = #{class_name},info = #{info},tid = #{tid} where class_id = #{class_id}
     </update>
+
     <delete id="deleteClass" parameterType="int">
         delete from s_class where class_id = #{class_id}
     </delete>

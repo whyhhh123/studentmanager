@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.why.studentmanager.mapper.AttendMapper">
+    <select id="findByCourseId" parameterType="int" resultType="Attend">
+        select course_id as courseId,start,end,sign_num as signNum,s_attend.id,name as courseName,count from s_attend,s_course where s_attend.course_id = #{courseId} and s_attend.course_id = s_course.id
+    </select>
+
+    <select id="findById" parameterType="int" resultType="Attend">
+        select course_id as courseId,start,end,sign_num as signNum,s_attend.id,name as courseName,count from s_attend,s_course where s_attend.id = #{id} and s_attend.course_id = s_course.id
+    </select>
+
+    <select id="findByTid" resultType="Attend">
+        select course_id as courseId,start,end,sign_num as signNum,s_attend.id,name as courseName from s_attend,s_course where s_attend.course_id = any(select course_id from s_course where tid = #{tid}) and s_attend.course_id = s_course.id
+    </select>
+
+    <select id="findByAttend" parameterType="Attend" resultType="int">
+        select count(*)from s_attend where course_id = #{courseId} and start = #{start} and end = #{end}
+    </select>
+
+    <insert id="newattend" parameterType="Attend">
+        insert into s_attend(course_id,start,end,sign_num,count) values (#{courseId},#{start},#{end},0,#{count})
+    </insert>
+
+    <update id="updateNum" parameterType="int">
+        update s_attend set sign_num = sign_num+1 where id = #{id}
+    </update>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into s_attendance(course_id,sid,status,attend_id) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.courseId},#{item.sid},0,#{item.attendId})
+        </foreach>
+    </insert>
+
+    <select id="countselect" parameterType="int" resultType="int">
+        select count(*) from s_attend where course_id = #{courseId}
+    </select>
+
+</mapper>

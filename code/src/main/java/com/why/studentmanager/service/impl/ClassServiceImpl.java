@@ -1,7 +1,10 @@
 package com.why.studentmanager.service.impl;
 
 import com.why.studentmanager.domain.Clazz;
+import com.why.studentmanager.domain.Course;
+import com.why.studentmanager.domain.Student;
 import com.why.studentmanager.mapper.ClassMapper;
+import com.why.studentmanager.mapper.StudentMapper;
 import com.why.studentmanager.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +17,16 @@ import java.util.List;
 public class ClassServiceImpl implements ClassService {
     @Autowired
     private ClassMapper classMapper;
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Override
     public List<Clazz> findAllClass() {
         List<Clazz> clazzes = classMapper.findAllClass();
         return clazzes;
     }
+
+
 
     @Override
     public Clazz findById(Integer id) {
@@ -42,9 +49,17 @@ public class ClassServiceImpl implements ClassService {
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public int deleteClass(Integer class_id) {
-        int result = classMapper.deleteClass(class_id);
-        //classMapper.alterTable();
-        return result;
+        List<Student> students = studentMapper.findByClassId(class_id);
+        if(students.size() == 0)
+        {
+            int result = classMapper.deleteClass(class_id);
+            classMapper.alterTable();
+            return result;
+        }
+        else{
+            return 0;
+        }
+
     }
 
 }

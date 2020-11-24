@@ -10,7 +10,6 @@ public class Course {
     private String courseDate;
     private int residueNum;
     private int maxNum;
-    private String info;
 
     @Override
     public String toString() {
@@ -23,8 +22,20 @@ public class Course {
                 ", residueNum=" + residueNum +
                 ", maxNum=" + maxNum +
                 ", info='" + info + '\'' +
+                ", attendNum=" + attendNum +
                 '}';
     }
+
+    public int getAttendNum() {
+        return attendNum;
+    }
+
+    public void setAttendNum(int attendNum) {
+        this.attendNum = attendNum;
+    }
+
+    private String info;
+    private int attendNum;
 
     @Override
     public boolean equals(Object o) {

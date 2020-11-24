@@ -6,9 +6,11 @@
          SELECT
             s_score.sid,
             s_course.NAME as courseName,
+            s_course.id AS courseId,
             score,
             remark,
             s_student.username as sName,
+            s_class.class_id as classId,
             class_name as className
         FROM
             s_score,
@@ -21,5 +23,30 @@
             AND s_score.class_id = s_class.class_id;
     </select>
 
+    <select id="findByCourseId" parameterType="int" resultType="UploadEasyExcelData">
+        SELECT
+            s_student.sid,
+            s_course.NAME AS courseName,
+            s_course.id AS courseId,
+            s_student.username AS sName,
+            class_name AS className
+        FROM
+            s_course,
+            s_student,
+            s_select_course,
+            s_class
+        WHERE
+            s_course.id = #{courseId}
+            AND s_select_course.course_id = s_course.id
+            AND s_student.sid = s_select_course.sid
+            AND s_class.class_id = s_student.class_id
+    </select>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into s_score(class_id,sid,course_id,score) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.classId},#{item.sid},#{item.courseId},#{item.score})
+        </foreach>
+    </insert>
 
 </mapper>

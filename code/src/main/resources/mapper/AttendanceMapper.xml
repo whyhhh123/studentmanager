@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.why.studentmanager.mapper.AttendanceMapper">
+
+    <select id="findByCourseId()" resultType="Attendance">
+       SELECT
+            s_attendance.id,
+            s_attendance.course_id AS courseId,
+            s_attendance.sid AS sid,
+            s_student.username AS sName,
+            s_course.`name` AS courseName,
+            attend_id as attendId,
+            time
+       FROM
+            s_attendance,
+            s_course,
+            s_student
+       WHERE
+            s_attendance.course_id = 3
+            AND s_course.id = s_attendance.course_id
+            AND s_student.sid = s_attendance.sid;
+    </select>
+
+    <select id="findBySid" resultType="Attendance">
+        SELECT
+            s_attendance.id,
+            s_attendance.course_id AS courseId,
+            s_attendance.sid AS sid,
+            s_student.username AS sName,
+            s_course.`name` AS courseName,
+            attend_id as attendId,
+            time
+        FROM
+            s_attendance,
+            s_course,
+            s_student
+        WHERE
+            s_attendance.sid = #{sid}
+            AND s_course.id = s_attendance.course_id
+            AND s_student.sid = s_attendance.sid;
+
+    </select>
+
+    <select id="findAll" resultType="Attendance">
+        SELECT
+            s_attendance.id,
+            s_attendance.course_id AS courseId,
+            s_attendance.sid AS sid,
+            s_student.username AS sName,
+            s_course.`name` AS courseName,
+            attend_id as attendId,
+            time
+        FROM
+            s_attendance,
+            s_course,
+            s_student
+        WHERE
+            s_course.id = s_attendance.course_id
+            AND s_student.sid = s_attendance.sid;
+    </select>
+
+    <select id="findByAttend" parameterType="Attendance" resultType="Attendance">
+        select * from s_attendance where sid=#{sid} and course_id=#{courseId}
+    </select>
+
+    <insert id="addAttend" parameterType="Attendance">
+        INSERT INTO s_attendance ( course_id, sid, time )
+        VALUES
+            (
+                #{courseId},
+                #{sid},
+            now());
+    </insert>
+
+    <update id="updateStatus" parameterType="Attendance">
+        update s_attendance set status = #{status} ,time = #{time} where id = #{id}
+    </update>
+
+    <select id="findById" parameterType="int" resultType="Attendance">
+        SELECT
+            s_attendance.id,
+            s_attendance.course_id AS courseId,
+            s_attendance.sid AS sid,
+            s_student.username AS sName,
+            s_course.`name` AS courseName,
+            time,
+            attend_id as attendId
+        FROM
+            s_attendance,
+            s_course,
+            s_student
+        WHERE
+            s_attendance.id = #{id}
+            AND s_course.id = s_attendance.course_id
+            AND s_student.sid = s_attendance.sid;
+    </select>
+
+    <select id="findByCourseIdAttend" parameterType="Attend" resultType="Attendance">
+        select s_attend.course_id as courseId,sid,s_attend.id as attendId from s_select_course,s_attend where count = #{count} and s_attend.course_id = #{courseId} and s_select_course.course_id = s_attend.course_id
+    </select>
+
+</mapper>

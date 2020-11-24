@@ -5,13 +5,11 @@ import com.why.studentmanager.domain.SelectCourse;
 import com.why.studentmanager.domain.Student;
 import com.why.studentmanager.service.CourseService;
 import com.why.studentmanager.service.SelectCourseService;
-import com.why.studentmanager.until.AjaxResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -29,31 +27,32 @@ public class SelectCourseController {
         model.addAttribute("student",student);
         List<Course> courseList = courseService.findAllCourse();
         model.addAttribute("courselist",courseList);
-        return "/index/tables/select";
+        return "/index/selectcourse/select";
     }
 
-    @GetMapping("/addSelectCourse")
-    @ResponseBody
-    public AjaxResult addSelectCourse(SelectCourse selectCourse, Model model){
-
-        AjaxResult ajaxResult = new AjaxResult();
+    @GetMapping("/addSelectCourse/{sid}/{course_id}")
+    public String addSelectCourse(@PathVariable("sid")int sid,@PathVariable("course_id")int course_id, Model model,HttpServletRequest request){
+        Student student = (Student) request.getSession().getAttribute("student");
+        model.addAttribute("student",student);
+        SelectCourse selectCourse = new SelectCourse();
+        selectCourse.setSid(sid);
+        selectCourse.setCourseId(course_id);
         System.out.println("selectCourse = " + selectCourse);
         int result =  selectCourseService.addSelectCourse(selectCourse);
-
        if(result == 1){
-           ajaxResult.setMsg("选课成功");
-           ajaxResult.setStatus(true);
+           model.addAttribute("msg","选课成功");
        }
        else if(result == 0){
-           ajaxResult.setStatus(false);
-           ajaxResult.setMsg("课程已满");
+           model.addAttribute("msg","课程已满");
+
        }
        else{
-           ajaxResult.setMsg("请勿重新选课");
-           ajaxResult.setStatus(false);
+           model.addAttribute("msg","请勿重新选课");
+
        }
-       model.addAttribute("msg","asdfadsf");
-        return ajaxResult;
+        List<Course> courseList = courseService.findAllCourse();
+        model.addAttribute("courselist",courseList);
+        return "/index/tables/select";
     }
 
     @GetMapping("/selectedlist")
@@ -65,17 +64,23 @@ public class SelectCourseController {
         return "/index/tables/selected";
     }
 
-    @GetMapping("/deleteSelected")
-    @ResponseBody
-    public AjaxResult deleteSelected(SelectCourse selectCourse){
-
-        AjaxResult ajaxResult = new AjaxResult();
-
+    @GetMapping("/deleteSelected/{sid}/{course_id}")
+    public String deleteSelected(@PathVariable("sid")int sid,@PathVariable("course_id")int course_id, Model model,HttpServletRequest request){
+        Student student = (Student) request.getSession().getAttribute("student");
+        model.addAttribute("student",student);
+        SelectCourse selectCourse = new SelectCourse();
+        selectCourse.setSid(sid);
+        selectCourse.setCourseId(course_id);
         int result = selectCourseService.deleteBySelectCourse(selectCourse);
         if(result==1){
-            ajaxResult.setMsg("退选成功");
-            ajaxResult.setStatus(true);
+            model.addAttribute("msg","退选成功");
         }
-        return ajaxResult;
+        else if(result == 0){
+            model.addAttribute("msg","您未选择此课程");
+        }
+        List<Course> selectedCourses = selectCourseService.showSelected(student.getSid());
+        model.addAttribute("selectedCourses",selectedCourses);
+
+        return "/index/tables/selected";
     }
 }

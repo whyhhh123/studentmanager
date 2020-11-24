@@ -43,12 +43,10 @@
 								<div class="card-header">
 									<h4 class="card-title">课程表</h4>
 								</div>
+								<p style="color:red" th:text="${nodelete}" th:if="${not #strings.isEmpty(nodelete)}"></p>
 								<div class="card-body">
 									<a class="btn btn-primary btn-xs" th:href="@{/addcourse}">添加课程
-
 									</a>
-
-
 									<div class="table-responsive">
 										<table id="multi-filter-select" class="display table table-striped table-hover" >
 											<thead>

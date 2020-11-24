@@ -25,6 +25,52 @@
 
     </select>
 
+    <select id="findBySid" resultType="Score">
+        SELECT
+            s_score.id,
+            s_score.sid,
+            s_score.course_id as courseId,
+            s_course.NAME as courseName,
+            score,
+            remark,
+            s_student.username as sName,
+            class_name as className
+        FROM
+            s_score,
+            s_student,
+            s_course,
+            s_class
+        WHERE
+            s_score.sid = #{sid}
+            AND s_score.sid = s_student.sid
+            AND s_course.id = s_score.course_id
+            AND s_score.class_id = s_class.class_id;
+
+    </select>
+
+    <select id="findByCourseId" resultType="Score">
+        SELECT
+            s_score.id,
+            s_score.sid,
+            s_score.course_id as courseId,
+            s_course.NAME as courseName,
+            score,
+            remark,
+            s_student.username as sName,
+            class_name as className
+        FROM
+            s_score,
+            s_student,
+            s_course,
+            s_class
+        WHERE
+            s_course.id = #{courseId}
+            AND s_score.sid = s_student.sid
+            AND s_course.id = s_score.course_id
+            AND s_score.class_id = s_class.class_id;
+
+    </select>
+
     <select id="findById" resultType="Score">
         SELECT
             s_score.id,
@@ -51,6 +97,30 @@
     <select id="findByScore" resultType="int">
         select id from s_score where sid = #{sid} and course_id = #{courseId}
     </select>
+
+    <select id="findByTid" parameterType="int" resultType="Score">
+        SELECT
+            s_score.id,
+            s_score.sid,
+            s_score.course_id as courseId,
+            s_course.NAME as courseName,
+            score,
+            remark,
+            s_student.username as sName,
+            class_name as className
+        FROM
+            s_score,
+            s_student,
+            s_course,
+            s_class
+        WHERE
+            s_course.tid = #{tid}
+            and s_score.course_id = s_course.id
+            AND s_score.sid = s_student.sid
+            AND s_course.id = s_score.course_id
+            AND s_score.class_id = s_class.class_id;
+    </select>
+
     <insert id="addScore" parameterType="Score" >
         insert into s_score(class_id,sid,course_id,score) values (#{classId},#{sid},#{courseId},#{score});
     </insert>
@@ -66,5 +136,9 @@
     <update id="alterTable" >
         ALTER TABLE s_score AUTO_INCREMENT = 1;
     </update>
+
+
+
+
 
 </mapper>

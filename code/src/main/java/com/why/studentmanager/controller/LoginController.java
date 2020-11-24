@@ -77,7 +77,7 @@ public class LoginController {
         else if(type.equals("3")){
             Admin admin = new Admin();
             admin.setUsername(username);
-            admin.setPassword(password);
+            admin.setPassword(Md5Util.stringToMD5(password));
             Admin ad = adminService.findByAdmin(admin);
             if(org.springframework.util.StringUtils.isEmpty(ad)){
                 model.addAttribute("system","用户密码错误");
@@ -86,7 +86,7 @@ public class LoginController {
             }
             model.addAttribute("admin",ad);
             session.setAttribute("admin",ad);
-            return"index/index";
+            return "index/index";
 
         }
         return "login";

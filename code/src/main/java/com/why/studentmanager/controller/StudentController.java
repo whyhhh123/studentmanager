@@ -2,6 +2,7 @@ package com.why.studentmanager.controller;
 
 import com.why.studentmanager.domain.Clazz;
 import com.why.studentmanager.domain.Student;
+import com.why.studentmanager.domain.Teacher;
 import com.why.studentmanager.service.ClassService;
 import com.why.studentmanager.service.StudentService;
 import com.why.studentmanager.until.Md5Util;
@@ -10,8 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -24,12 +24,22 @@ public class StudentController {
 
 
     @GetMapping("/index/tables/studentlist")
-    public String studentList(Model model){
+    public List<Student> studentList(Model model){
         List<Student> students = studentService.findAllStudent();
         System.out.println(students);
         model.addAttribute("sts",students);
+        //"/index/tables/studentlist"
+        return students;
+    }
 
-        return "index/tables/studentlist";
+    @GetMapping("/teacherstudentlist/{tid}")
+    public String teacherstudentList(@PathVariable("tid")int tid, Model model, HttpServletRequest request){
+        Teacher teacher = (Teacher) request.getSession().getAttribute("teacher");
+        model.addAttribute("teacher",teacher);
+        List<Student> students = studentService.findByTid(tid);
+        System.out.println(students);
+        model.addAttribute("sts",students);
+        return "/index/tables/teacherstudentlist";
     }
 
     @GetMapping("/addstudent")

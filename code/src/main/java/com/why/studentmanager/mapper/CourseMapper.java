@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface CourseMapper {
     List<Course> findAllCourse();
+    List<Course> findByTid(int tid);
     int updateCourse(Course course);
     int deleteCourse(int id);
     int addCourse(Course course);
@@ -15,6 +16,6 @@ public interface CourseMapper {
     int selectCourse(SelectCourse selectCourse);
     int decSelected(int id);
     int alterTable();
-    List<Course> selectedCourse(int sid);
+
 }
 

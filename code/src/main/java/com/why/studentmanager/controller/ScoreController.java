@@ -1,9 +1,6 @@
 package com.why.studentmanager.controller;
 
-import com.why.studentmanager.domain.Course;
-import com.why.studentmanager.domain.Score;
-import com.why.studentmanager.domain.SelectCourse;
-import com.why.studentmanager.domain.Student;
+import com.why.studentmanager.domain.*;
 import com.why.studentmanager.service.CourseService;
 import com.why.studentmanager.service.ScoreService;
 import com.why.studentmanager.service.SelectCourseService;
@@ -32,6 +29,8 @@ public class ScoreController {
     @GetMapping("/scorelist")
     public String scoreList(Model model,HttpServletRequest request){
         List<Score> scores = scoreService.findAllScore();
+        List<Course> courses = courseService.findAllCourse();
+        model.addAttribute("courses",courses);
         model.addAttribute("scores",scores);
         return "/index/score/scorelist";
     }
@@ -40,11 +39,9 @@ public class ScoreController {
     public String studentscoreList(Model model, HttpServletRequest request){
         Student student = (Student) request.getSession().getAttribute("student");
         model.addAttribute("student",student);
-        List<Score> scores = scoreService.findAllScore();
-        System.out.println(student);
+        List<Score> scores = scoreService.findBySid(student.getSid());
         model.addAttribute("scores",scores);
-        List<Course> courses = courseService.selectedCourse(student.getSid());
-        model.addAttribute("courses",courses);
+
         return "/index/score/studentscorelist";
     }
 
@@ -63,7 +60,7 @@ public class ScoreController {
             model.addAttribute("notstudnet","请输入正确学号");
             List<Course> courses = courseService.findAllCourse();
             model.addAttribute("courses",courses);
-            return "index/score/addscore";
+            return "/index/score/addscore";
         }
         SelectCourse selectCourse = new SelectCourse();
         selectCourse.setCourseId(score.getCourseId());
@@ -73,10 +70,10 @@ public class ScoreController {
             model.addAttribute("msg","该学生未选修此课程");
             List<Course> courses = courseService.findAllCourse();
             model.addAttribute("courses",courses);
-            return "index/score/addscore";
+            return "/index/score/addscore";
         }
-        int rs = scoreService.findByScore(score);
-        if(rs==0){
+        Integer rs = scoreService.findByScore(score);
+        if(rs==null ){
             score.setClassId(student.getClass_id());
             int result = scoreService.addScore(score);
 
@@ -89,7 +86,7 @@ public class ScoreController {
             model.addAttribute("msg","该同学此门课程已经登记成绩");
             List<Course> courses = courseService.findAllCourse();
             model.addAttribute("courses",courses);
-            return "index/score/addscore";
+            return "/index/score/addscore";
         }
 
     }
@@ -98,7 +95,7 @@ public class ScoreController {
     public String updateScore(@PathVariable("id")int id,Model model){
         Score score = scoreService.findById(id);
         model.addAttribute("score",score);
-        return "index/score/updatescore";
+        return "/index/score/updatescore";
     }
 
     @PostMapping("updatescore/{id}")
@@ -120,6 +117,28 @@ public class ScoreController {
             List<Score> scores = scoreService.findAllScore();
             model.addAttribute("scores",scores);
         }
-        return "index/score/scorelist";
+        return "/index/score/scorelist";
     }
+
+    @GetMapping("/teacherscorelist")
+    public String teacherscorelist(HttpServletRequest request,Model model){
+        Teacher teacher = (Teacher)request.getSession().getAttribute("teacher");
+        List<Course> courses = courseService.findByTid(teacher.getTid());
+        model.addAttribute("courses",courses);
+        List<Score> scores = scoreService.findByTid(teacher.getTid());
+        model.addAttribute("scores",scores);
+        return "/index/score/teacherscorelist";
+    }
+
+    @GetMapping("/findByCourseId")
+    public String findByCourseId(Model model,int courseId,HttpServletRequest request){
+        List<Score> scores = scoreService.findByCourseId(courseId);
+        Teacher teacher = (Teacher)request.getSession().getAttribute("teacher");
+        List<Course> courses = courseService.findByTid(teacher.getTid());
+        model.addAttribute("courses",courses);
+        model.addAttribute("scores",scores);
+        return "/index/score/teacherscorelist";
+    }
+
+
 }

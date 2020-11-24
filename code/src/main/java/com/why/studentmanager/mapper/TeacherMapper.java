@@ -1,5 +1,6 @@
 package com.why.studentmanager.mapper;
 
+import com.why.studentmanager.domain.Admin;
 import com.why.studentmanager.domain.Teacher;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public interface TeacherMapper {
 
     int resetClass_id(int tid);
     int updateTeacher(Teacher teacher);
+    int updatePwdByTeacher(Teacher teacher);
     int deleteTeacher(int id);
     int alterTable();
 
